@@ -7,6 +7,7 @@
     ],
     "keywords": [
         "3D",
+        "URL",
         "attribute",
         "buildings",
         "label",
@@ -14,8 +15,13 @@
         "scene",
         "symbol",
         "text",
-        "URL",
-        "visualization"
+        "visualization",
+        "ArcadeLabelExpression",
+        "FeatureLayer",
+        "LabelDefinition",
+        "Scene",
+        "SceneView",
+        "TextSymbol"
     ],
     "redirect_from": [
         ""

@@ -82,6 +82,7 @@ LocalServerGeoprocessingSample {
                             verticalCenter: parent.verticalCenter
                             margins: 5
                         }
+                        width: 100
                         text: "200"
                         selectByMouse: true
                         validator: DoubleValidator {bottom: 100; top: 500}

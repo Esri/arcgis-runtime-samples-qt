@@ -87,7 +87,7 @@ void GenerateGeodatabase::componentComplete()
   m_mapView->setWrapAroundMode(WrapAroundMode::Disabled);
 
   //! [Create a map using a local tile package]
-  TileCache* tileCache = new TileCache(m_dataPath + "tpk/SanFrancisco.tpk", this);
+  TileCache* tileCache = new TileCache(m_dataPath + "tpkx/SanFrancisco.tpkx", this);
   ArcGISTiledLayer* tiledLayer = new ArcGISTiledLayer(tileCache, this);
   Basemap* basemap = new Basemap(tiledLayer, this);
   m_map = new Map(basemap, this);

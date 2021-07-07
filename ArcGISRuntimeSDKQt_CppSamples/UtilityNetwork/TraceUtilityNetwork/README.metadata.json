@@ -6,32 +6,52 @@
         "screenshot.png"
     ],
     "keywords": [
-        "connected trace",
+        "condition barriers",
+        "downstream trace",
         "network analysis",
+        "subnetwork trace",
+        "trace configuration",
+        "traversability",
+        "upstream trace",
         "utility network",
+        "validate consistency",
         "GeometryEngine::fractionAlong",
+        "ServiceGeodatabase",
         "UtilityAssetType",
+        "UtilityDomainNetwork",
+        "UtilityElement",
         "UtilityElementTraceResult",
         "UtilityNetwork",
         "UtilityNetworkDefinition",
         "UtilityNetworkSource",
         "UtilityTerminal",
+        "UtilityTier",
+        "UtilityTraceConfiguration",
         "UtilityTraceParameters",
-        "UtilityTraceResult"
+        "UtilityTraceResult",
+        "UtilityTraceType",
+        "UtilityTraversability"
     ],
     "redirect_from": [
         ""
     ],
     "relevant_apis": [
         "GeometryEngine::fractionAlong",
+        "ServiceGeodatabase",
         "UtilityAssetType",
+        "UtilityDomainNetwork",
+        "UtilityElement",
         "UtilityElementTraceResult",
         "UtilityNetwork",
         "UtilityNetworkDefinition",
         "UtilityNetworkSource",
         "UtilityTerminal",
+        "UtilityTier",
+        "UtilityTraceConfiguration",
         "UtilityTraceParameters",
-        "UtilityTraceResult"
+        "UtilityTraceResult",
+        "UtilityTraceType",
+        "UtilityTraversability"
     ],
     "snippets": [
         "TraceUtilityNetwork.qml",

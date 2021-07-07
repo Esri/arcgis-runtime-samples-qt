@@ -49,7 +49,7 @@ Rectangle {
             Basemap {
                 ArcGISTiledLayer {
                     TileCache {
-                        path: dataPath + "/tpk/streetmap_SD.tpk"
+                        path: dataPath + "/tpkx/streetmap_SD.tpkx"
                     }
                 }
             }
@@ -157,7 +157,7 @@ Rectangle {
 
     LocatorTask {
         id: locatorTask
-        url: dataPath + "/Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.loc"
+        url: dataPath + "/Locators/SanDiegoStreetAddressLocator/SanDiego_StreetAddress.loc"
         //! [OfflineGeocode LocatorTask]
 
         suggestions {

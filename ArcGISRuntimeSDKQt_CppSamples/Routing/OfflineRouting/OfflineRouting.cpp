@@ -71,14 +71,14 @@ OfflineRouting::OfflineRouting(QObject* parent /* = nullptr */):
   m_stopsOverlay(new GraphicsOverlay(this)),
   m_routeOverlay(new GraphicsOverlay(this))
 {
-  const QString folderLocation = QString("%1/ArcGIS/Runtime/Data/tpk/san_diego").arg(defaultDataPath());
+  const QString folderLocation = QString("%1/ArcGIS/Runtime/Data/tpkx/san_diego").arg(defaultDataPath());
   if (!QFileInfo::exists(folderLocation))
   {
     qWarning() << "Please download required data.";
     return;
   }
 
-  const QString fileLocation = folderLocation + QString("/streetmap_SD.tpk");
+  const QString fileLocation = folderLocation + QString("/streetmap_SD.tpkx");
   TileCache* tileCache = new TileCache(fileLocation, this);
   ArcGISTiledLayer* tiledLayer = new ArcGISTiledLayer(tileCache, this);
   Basemap* basemap = new Basemap(tiledLayer, this);

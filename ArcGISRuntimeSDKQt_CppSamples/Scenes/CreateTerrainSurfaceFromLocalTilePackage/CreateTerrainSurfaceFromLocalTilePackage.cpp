@@ -61,7 +61,7 @@ CreateTerrainSurfaceFromLocalTilePackage::CreateTerrainSurfaceFromLocalTilePacka
   // create the MontereyElevation data path
   // data is downloaded automatically by the sample viewer app. Instructions to download
   // separately are specified in the readme.
-  const QString montereyTileElevationPath = QString{defaultDataPath() + "/ArcGIS/Runtime/Data/tpk/MontereyElevation.tpk"};
+  const QString montereyTileElevationPath = QString{defaultDataPath() + "/ArcGIS/Runtime/Data/tpkx/MontereyElevation.tpkx"};
 
   // Before attempting to add any layers, check that the file for the elevation source exists at all.
   const bool srcElevationFileExists = QFileInfo::exists(montereyTileElevationPath);

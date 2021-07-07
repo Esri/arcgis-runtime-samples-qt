@@ -33,6 +33,8 @@ The [world elevation service](https://elevation3d.arcgis.com/arcgis/rest/service
 
 ## Additional information
 
+**Flyover AR** is one of three main patterns for working with geographic information in augmented reality.
+
 #### Clone the toolkit repo - Required for AR samples
 
 Change directory into your locally cloned samples repo and then use `git clone` to get a copy of the [ArcGIS Runtime Toolkit - Qt](https://github.com/Esri/arcgis-runtime-toolkit-qt.git).

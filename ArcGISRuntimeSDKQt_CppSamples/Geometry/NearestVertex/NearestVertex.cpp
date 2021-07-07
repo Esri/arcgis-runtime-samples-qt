@@ -119,7 +119,9 @@ void NearestVertex::setupGraphics()
   graphicsOverlay->graphics()->append(nearestVertexGraphic);
 
   // add graphic to clicked location
-  connect(m_mapView, &MapQuickView::mouseClicked, this, [=](QMouseEvent& e)
+  connect(m_mapView, &MapQuickView::mouseClicked, this,
+          [nearestVertexGraphic, nearestCoordinateGraphic, polygonBuilder, clickedLocationGraphic, this]
+          (QMouseEvent& e)
   {
     const Point clickedLocation = m_mapView->screenToLocation(e.x(), e.y());
     // normalizing the geometry before performing geometric operations

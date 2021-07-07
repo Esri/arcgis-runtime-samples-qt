@@ -128,8 +128,8 @@ ExportTilesSample {
 
         Rectangle {
             anchors.centerIn: parent
-            width: 125
-            height: 100
+            width: 140
+            height: 145
             color: "lightgrey"
             opacity: 0.8
             radius: 5
@@ -152,6 +152,12 @@ ExportTilesSample {
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
                     text: statusText
+                    font.pixelSize: 16
+                }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: exportTilesSample.exportTilesProgress + "% Completed"
                     font.pixelSize: 16
                 }
             }

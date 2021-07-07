@@ -24,7 +24,7 @@ Rectangle {
     width: 800
     height: 600
 
-    readonly property url dataPath: System.userHomePath + "/ArcGIS/Runtime/Data/tpk/"
+    readonly property url dataPath: System.userHomePath + "/ArcGIS/Runtime/Data/tpkx/"
 
     MapView {
         id: mapView
@@ -35,7 +35,7 @@ Rectangle {
             Basemap {
                 ArcGISTiledLayer {
                     tileCache: TileCache {
-                        path: dataPath + "SanFrancisco.tpk"
+                        path: dataPath + "SanFrancisco.tpkx"
                     }
                 }
             }

@@ -24,11 +24,11 @@ Rectangle {
     width: 800
     height: 600
     
-    readonly property url outputTileCache: System.temporaryFolder.url + "/TileCacheQml_%1.tpk".arg(new Date().getTime().toString())
-    readonly property string tiledServiceUrl: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/World_Street_Map/MapServer"
+    readonly property url outputTileCache: System.temporaryFolder.url + "/TileCacheQml_%1.tpkx".arg(new Date().getTime().toString())
     property Envelope tileCacheExtent: null
     property string statusText: ""
     property ExportTileCacheParameters params
+    property var exportTileCacheProgress: 0
 
     // Create MapView that contains a Map
     MapView {
@@ -36,23 +36,25 @@ Rectangle {
         anchors.fill: parent
         Map {
             id: map
-            // Nest an ArcGISTiledLayer in the Basemap
+            // Add an imagery basemap to the map and get the url of the raster baselayer once it has loaded
             Basemap {
-                ArcGISTiledLayer {
-                    id: tiledLayer
-                    url: tiledServiceUrl
+                initStyle: Enums.BasemapStyleArcGISImagery
+
+                onLoadStatusChanged: {
+                    if (loadStatus !== Enums.LoadStatusLoaded)
+                        return;
+
+                    exportTask.url = baseLayers.get(0).url;
                 }
             }
 
-            // set an initial viewpoint
-            ViewpointExtent {
-                Envelope {
-                    xMax: 12362601.050868368
-                    xMin: 10187678.26582548
-                    yMax: 2567213.6854449743
-                    yMin: 936021.5966628084
-                    spatialReference: SpatialReference { wkid: 3857 }
+            initialViewpoint: ViewpointCenter {
+                center: Point {
+                    x: -117
+                    y: 35
+                    spatialReference: SpatialReference { wkid: 4326 }
                 }
+                targetScale: 1e7
             }
         }
     }
@@ -62,7 +64,6 @@ Rectangle {
 
     ExportTileCacheTask {
         id: exportTask
-        url: tiledServiceUrl
         property var exportJob
 
         onCreateDefaultExportTileCacheParametersStatusChanged: {
@@ -76,7 +77,7 @@ Rectangle {
 
         function generateDefaultParameters() {
             // generate the default parameters with the extent and map scales specified
-            exportTask.createDefaultExportTileCacheParameters(tileCacheExtent, mapView.mapScale, tiledLayer.maxScale);
+            exportTask.createDefaultExportTileCacheParameters(tileCacheExtent, mapView.mapScale, mapView.mapScale/10);
         }
 
         function executeExportTileCacheTask(params) {
@@ -90,6 +91,7 @@ Rectangle {
 
                 // connect to the job's status changed signal to know once it is done
                 exportJob.jobStatusChanged.connect(updateJobStatus);
+                exportJob.progressChanged.connect(updateExportProgress);
 
                 exportJob.start();
             } else {
@@ -112,18 +114,20 @@ Rectangle {
                 statusText = "Job paused";
                 break;
             case Enums.JobStatusStarted:
-                console.log("In progress...");
                 statusText = "In progress...";
                 break;
             case Enums.JobStatusSucceeded:
-                statusText = "Adding TPK...";
+                statusText = "Adding TPKX...";
                 exportWindow.hideWindow(1500);
                 displayOutputTileCache(exportJob.result);
                 break;
             default:
-                console.log("default");
                 break;
             }
+        }
+
+        function updateExportProgress() {
+            exportTileCacheProgress = exportJob.progress;
         }
 
         function displayOutputTileCache(tileCache) {
@@ -139,17 +143,22 @@ Rectangle {
 
             // zoom to the new layer and hide window once loaded
             tiledLayer.loadStatusChanged.connect(()=> {
-                if (tiledLayer.loadStatus === Enums.LoadStatusLoaded) {
-                    extentRectangle.visible = false;
-                    downloadButton.visible = false;
-                    mapView.setViewpointScale(mapView.mapScale * .5);
-                }
-            });
+                 if (tiledLayer.loadStatus === Enums.LoadStatusLoaded) {
+                     extentRectangle.visible = false;
+                     downloadButton.visible = false;
+
+                     const prevMapScale = mapView.mapScale;
+                     mapView.setViewpointScale(prevMapScale * .5);
+                     map.minScale = prevMapScale;
+                     map.maxScale = prevMapScale / 10;
+                 }
+             });
         }
 
         Component.onDestruction: {
             if (exportJob) {
                 exportJob.jobStatusChanged.disconnect(updateJobStatus);
+                exportJob.progressChanged.disconnect(updateExportProgress);
             }
         }
     }
@@ -246,8 +255,8 @@ Rectangle {
 
         Rectangle {
             anchors.centerIn: parent
-            width: 125
-            height: 100
+            width: 140
+            height: 145
             color: "lightgrey"
             opacity: 0.8
             radius: 5
@@ -272,12 +281,17 @@ Rectangle {
                     text: statusText
                     font.pixelSize: 16
                 }
+
+                Text {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    text: exportTileCacheProgress + "% Completed"
+                    font.pixelSize: 16
+                }
             }
         }
 
         Timer {
             id: hideWindowTimer
-
             onTriggered: exportWindow.visible = false;
         }
 

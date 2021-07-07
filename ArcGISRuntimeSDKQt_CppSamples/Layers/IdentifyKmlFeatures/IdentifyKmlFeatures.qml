@@ -30,7 +30,7 @@ Item {
             id: callout
             calloutData: view.calloutData
             autoAdjustWidth: false
-            calloutWidth: 400
+            calloutWidth: 300
             accessoryButtonHidden: true
             leaderPosition: leaderPositionEnum.Top
             calloutContent: customComponent

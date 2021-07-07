@@ -26,4 +26,4 @@ The sample loads with a predefined simple marker symbol, set as a red circle.
 
 ## Tags
 
-SimpleMarkerSymbol, symbol
+symbol

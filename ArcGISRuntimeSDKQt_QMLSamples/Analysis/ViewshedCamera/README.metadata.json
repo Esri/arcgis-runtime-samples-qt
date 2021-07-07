@@ -8,13 +8,14 @@
     "keywords": [
         "3D",
         "Scene",
+        "integrated mesh",
         "viewshed",
         "visibility analysis",
         "AnalysisOverlay",
         "ArcGISScene",
         "ArcGISTiledElevationSource",
         "Camera",
-        "integrated mesh",
+        "IntegratedMeshLayer",
         "LocationViewshed",
         "SceneView"
     ],

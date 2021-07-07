@@ -1,25 +1,26 @@
 {
     "category": "Maps",
-    "description": "Parse NMEA sentences and use the results to show device location on the map.",
+    "description": "This sample demonstrates how to parse NMEA sentences and use the results to show device location on the map.",
     "ignore": false,
     "images": [
         "screenshot.png"
     ],
     "keywords": [
         "GPS",
-        "history",
-        "Location",
-        "LocationDisplay",
-        "navigation",
         "NMEA",
-        "NMEALocationDataSource",
+        "history",
+        "navigation",
         "real-time",
-        "trace"
+        "trace",
+        "LocationDisplay",
+        "NmeaLocationDataSource"
     ],
-    "redirect_from": "",
+    "redirect_from": [
+        ""
+    ],
     "relevant_apis": [
         "LocationDisplay",
-        "NMEALocationDataSource"
+        "NmeaLocationDataSource"
     ],
     "snippets": [
         "DisplayDeviceLocationWithNmeaDataSources.qml"

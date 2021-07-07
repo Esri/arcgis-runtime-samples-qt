@@ -15,10 +15,6 @@ Pan and zoom around the map. Observe the displayed military symbology on the map
 
 ## How it works
 
-This sample loads a number of point, line, and polygon feature tables from a Runtime geodatabase. For each feature table, a `FeatureLayer` is created, and a `DictionaryRenderer` object is created and applied to the layer. Note that each layer needs its own renderer, though all renderers can share the DictionarySymbolStyle, in which case all layers will use the same symbology specification (MIL-STD-2525D in the case of this sample). Each layer is added to the map, and when all layers are loaded, the map's viewpoint is set to zoom to the full extent of all feature layers.
-
-## How it works
-
 1. Create a `Geodatabase` with a given path.
 2. Wait for geodatabase to completely load by connecting to the `loadStatusChanged` signal and checking the `loadStatus`.
 3. Cycle through each `GeodatabaseFeatureTable` from the geodatabase using `Geodatabase.geodatabaseFeatureTables()`.
@@ -45,4 +41,4 @@ Link | Local Location
 
 ## Tags
 
-DictionaryRenderer, DictionarySymbolStyle, military, symbol
+military, symbol

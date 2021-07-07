@@ -25,8 +25,10 @@ The sample loads with the sublayer visible on the map. Toggle its visibility wit
 
 * LabelDefinition
 * ServiceFeatureTable
+* SimpleLabelExpression
 * SubtypeFeatureLayer
 * SubtypeSublayer
+* TextSymbol
 
 ## About the data
 

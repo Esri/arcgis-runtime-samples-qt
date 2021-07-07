@@ -16,6 +16,7 @@
         "GeoView.identifyLayer(...)",
         "IdentifyLayerResult",
         "KmlLayer",
+        "KmlPlacemark",
         "KmlPlacemark.balloonContent()"
     ],
     "redirect_from": [

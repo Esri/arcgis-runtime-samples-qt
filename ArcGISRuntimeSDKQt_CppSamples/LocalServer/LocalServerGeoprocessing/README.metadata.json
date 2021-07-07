@@ -6,8 +6,8 @@
             "path": "~/ArcGIS/Runtime/Data/gpkx/Contour.gpkx"
         },
         {
-            "itemId": "f7c7b4a30fb9415896ba0d1921fe014b",
-            "path": "~/ArcGIS/Runtime/Data/tpk/RasterHillshade.tpk"
+            "itemId": "3f38e1ae7c5948cc95334ba3a142a4ec",
+            "path": "~/ArcGIS/Runtime/Data/tpkx/RasterHillshade.tpkx"
         }
     ],
     "description": "Create contour lines from local raster data using a local geoprocessing package `.gpkx` and the contour geoprocessing tool.",

@@ -2,8 +2,8 @@
     "category": "Features",
     "dataItems": [
         {
-            "itemId": "3f1bbf0ec70b409a975f5c91f363fe7d",
-            "path": "~/ArcGIS/Runtime/Data/tpk/SanFrancisco.tpk"
+            "itemId": "e4a398afe9a945f3b0f4dca1e4faccb5",
+            "path": "~/ArcGIS/Runtime/Data/tpkx/SanFrancisco.tpkx"
         }
     ],
     "description": "Generate a local geodatabase from an online feature service.",

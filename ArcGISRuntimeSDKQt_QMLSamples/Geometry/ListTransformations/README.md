@@ -10,7 +10,7 @@ Transformations (sometimes known as datum or geographic transformations) are use
 
 ## How to use the sample
 
-Select a transformation from the list to see the result of projecting the point from EPSG:27700 to EPSG:3857 using that transformation. The result is shown as a red cross; you can visually compare the original blue point with the projected red cross. 
+Select a transformation from the list to see the result of projecting the point from EPSG:27700 to EPSG:3857 using that transformation. The result is shown as a red cross; you can visually compare the original blue point with the projected red cross.
 
 Select 'Consider current extent' to limit the transformations that are appropriate for the current extent.
 

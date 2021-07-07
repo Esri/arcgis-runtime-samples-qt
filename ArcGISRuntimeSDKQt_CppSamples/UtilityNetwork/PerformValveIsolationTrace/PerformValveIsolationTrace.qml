@@ -21,7 +21,6 @@ import QtQuick.Layouts 1.11
 import QtQuick.Dialogs 1.1
 
 Item {
-
     // add a mapView component
     MapView {
         id: view
@@ -38,7 +37,7 @@ Item {
             id: backgroundRect
             color: "#FBFBFB"
             height: childrenRect.height
-            width: row.width * 1.5
+            width: row.width * 1.25
 
             RowLayout {
                 id: titleRow
@@ -79,6 +78,13 @@ Item {
                     }
                     enabled: !sampleModel.tasksRunning
                 }
+                Button {
+                    text: "Reset"
+                    onClicked: {
+                        sampleModel.performReset();
+                    }
+                    enabled: !sampleModel.tasksRunning
+                }
             }
 
             RowLayout {
@@ -98,6 +104,11 @@ Item {
                 }
             }
         }
+    }
+
+    TerminalPickerView {
+        id: terminalPickerView
+        visible: sampleModel.terminals.length > 0
     }
 
     BusyIndicator {

@@ -23,6 +23,7 @@ namespace ArcGISRuntime
 {
 class Map;
 class MapQuickView;
+class LabelDefinition;
 }
 }
 
@@ -40,12 +41,11 @@ public:
   static void init();
 
 private:
+  Esri::ArcGISRuntime::LabelDefinition* createRepublicanLabelDefinition();
+  Esri::ArcGISRuntime::LabelDefinition* createDemocratLabelDefinition();
+
   Esri::ArcGISRuntime::Map* m_map = nullptr;
   Esri::ArcGISRuntime::MapQuickView* m_mapView = nullptr;
-
-private:
-  QString createRepublicanJson() const;
-  QString createDemocratJson() const;
 };
 
 #endif // SHOWLABELSONLAYERS_H

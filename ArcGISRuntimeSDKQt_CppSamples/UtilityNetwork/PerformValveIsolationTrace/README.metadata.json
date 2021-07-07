@@ -8,12 +8,15 @@
     "keywords": [
         "category comparison",
         "condition barriers",
+        "filter barriers",
         "isolated features",
         "network analysis",
         "subnetwork trace",
         "trace configuration",
         "trace filter",
         "utility network",
+        "GeometryEngine::fractionAlong",
+        "ServiceGeodatabase",
         "UtilityCategory",
         "UtilityCategoryComparison",
         "UtilityCategoryComparisonOperator",
@@ -22,6 +25,7 @@
         "UtilityElementTraceResult",
         "UtilityNetwork",
         "UtilityNetworkDefinition",
+        "UtilityTerminal",
         "UtilityTier",
         "UtilityTraceFilter",
         "UtilityTraceParameters",
@@ -32,6 +36,8 @@
         ""
     ],
     "relevant_apis": [
+        "GeometryEngine::fractionAlong",
+        "ServiceGeodatabase",
         "UtilityCategory",
         "UtilityCategoryComparison",
         "UtilityCategoryComparisonOperator",
@@ -40,6 +46,7 @@
         "UtilityElementTraceResult",
         "UtilityNetwork",
         "UtilityNetworkDefinition",
+        "UtilityTerminal",
         "UtilityTier",
         "UtilityTraceFilter",
         "UtilityTraceParameters",
@@ -49,7 +56,8 @@
     "snippets": [
         "PerformValveIsolationTrace.qml",
         "PerformValveIsolationTrace.cpp",
-        "PerformValveIsolationTrace.h"
+        "PerformValveIsolationTrace.h",
+        "TerminalPickerView.qml"
     ],
     "title": "Perform valve isolation trace"
 }

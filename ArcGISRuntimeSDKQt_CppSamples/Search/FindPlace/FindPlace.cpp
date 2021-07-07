@@ -44,6 +44,11 @@ FindPlace::FindPlace(QQuickItem* parent /* = nullptr */):
 {
 }
 
+FindPlace::~FindPlace()
+{
+  m_mapView->locationDisplay()->stop();
+}
+
 void FindPlace::init()
 {
   // Register the map view for QML
@@ -144,7 +149,8 @@ void FindPlace::addGraphicsOverlay()
 void FindPlace::createLocator()
 {
   // create a locator task that uses the world geocoding service
-  m_locatorTask = new LocatorTask(QUrl("https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer"), this);
+  // an ArcGIS Developer API key is required to utilize the world geocoding service
+  m_locatorTask = new LocatorTask(QUrl("https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer"), this);
 
   // set the suggestions Q_PROPERTY
   m_suggestListModel = m_locatorTask->suggestions();

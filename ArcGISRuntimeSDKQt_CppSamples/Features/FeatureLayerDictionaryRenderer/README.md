@@ -33,15 +33,6 @@ Pan and zoom around the map. Observe the displayed military symbology on the map
 * DictionaryRenderer
 * DictionarySymbolStyle
 
-## How it works
-
-This sample loads a number of point, line, and polygon feature tables from a Runtime geodatabase. For each feature table, a `FeatureLayer` is created, and a `DictionaryRenderer` object is created and applied to the layer. Note that each layer needs its own renderer, though all renderers can share the DictionarySymbolStyle, in which case all layers will use the same symbology specification (MIL-STD-2525D in the case of this sample). Each layer is added to the map, and when all layers are loaded, the map's viewpoint is set to zoom to the full extent of all feature layers.
-
-## Relevant API
-
-* DictionaryRenderer
-* SymbolDictionary
-
 ## Offline Data
 
 Read more about how to set up the sample's offline data [here](https://github.com/Esri/arcgis-runtime-samples-qt#use-offline-data-in-the-samples).
@@ -53,4 +44,4 @@ Link | Local Location
 
 ## Tags
 
-DictionaryRenderer, DictionarySymbolStyle, military, symbol
+military, symbol

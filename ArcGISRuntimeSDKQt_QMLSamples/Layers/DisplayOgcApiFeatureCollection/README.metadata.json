@@ -1,0 +1,31 @@
+{
+    "category": "Layers",
+    "description": "This sample demonstrates how to display an OGC API feature collection and query features while navigating the map view.",
+    "ignore": false,
+    "images": [
+        "screenshot.png"
+    ],
+    "keywords": [
+        "OGC",
+        "OGC API",
+        "feature",
+        "feature layer",
+        "feature table",
+        "service",
+        "table",
+        "web",
+        "OgcFeatureCollectionTable",
+        "QueryParameters"
+    ],
+    "redirect_from": [
+        ""
+    ],
+    "relevant_apis": [
+        "OgcFeatureCollectionTable",
+        "QueryParameters"
+    ],
+    "snippets": [
+        "DisplayOgcApiFeatureCollection.qml"
+    ],
+    "title": "Display OGC API Feature Collection"
+}

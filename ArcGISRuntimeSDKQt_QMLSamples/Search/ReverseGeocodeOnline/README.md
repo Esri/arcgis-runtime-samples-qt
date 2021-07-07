@@ -34,6 +34,10 @@ Link | Local Location
 ---------|-------|
 [pin PNG file](https://github.com/Esri/arcgis-runtime-samples-java/blob/master/search/reverse-geocode-online/src/main/resources/pin.png)| `<userhome>`/ArcGIS/Runtime/Data/symbol/pin.png |
 
+## About the data
+
+This sample uses the [World Geocoding Service](https://www.arcgis.com/home/item.html?id=305f2e55e67f4389bef269669fc2e284).
+
 ## Tags
 
 address, geocode, locate, reverse geocode, search

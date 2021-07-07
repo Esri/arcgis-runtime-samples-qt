@@ -29,6 +29,8 @@ namespace Esri
   }
 }
 
+class QTemporaryDir;
+
 #include <QQuickItem>
 #include <QStringListModel>
 
@@ -45,12 +47,14 @@ public:
 
 private:
   void connectSignals();
+  QString shortestTempPath();
 
 private:
   Esri::ArcGISRuntime::Map* m_map = nullptr;
   Esri::ArcGISRuntime::MapQuickView* m_mapView = nullptr;
   Esri::ArcGISRuntime::LocalFeatureService* m_localFeatureService = nullptr;
   void startFeatureService() const;
+  std::unique_ptr<QTemporaryDir> m_tempDir;
 };
 
 #endif // LOCAL_SERVER_FEATURELAYER_H

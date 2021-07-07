@@ -21,14 +21,17 @@
 #include "DisplaySubtypeFeatureLayer.h"
 
 #include "FeatureLayer.h"
+#include "LabelDefinition.h"
 #include "Map.h"
 #include "MapQuickView.h"
 #include "ServiceFeatureTable.h"
+#include "SimpleLabelExpression.h"
 #include "SimpleMarkerSymbol.h"
 #include "SimpleRenderer.h"
 #include "SubtypeFeatureLayer.h"
 #include "SubtypeSublayer.h"
 #include "SubtypeSublayerListModel.h"
+#include "TextSymbol.h"
 
 using namespace Esri::ArcGISRuntime;
 
@@ -36,8 +39,7 @@ DisplaySubtypeFeatureLayer::DisplaySubtypeFeatureLayer(QObject* parent /* = null
   QObject(parent),
   m_map(new Map(BasemapStyle::ArcGISStreetsNight, this)),
   m_cred(new Credential("viewer01", "I68VGU^nMurF", this)),
-  m_alternateRenderer(new SimpleRenderer(new SimpleMarkerSymbol(SimpleMarkerSymbolStyle::Diamond, QColor(Qt::magenta), 20, this), this)),
-  m_labelJson(QStringLiteral("{ \"labelExpression\":\"[nominalvoltage]\",\"labelPlacement\":\"esriServerPointLabelPlacementAboveRight\",\"useCodedValues\":true,\"symbol\":{\"angle\":0,\"backgroundColor\":[0,0,0,0],\"borderLineColor\":[0,0,0,0],\"borderLineSize\":0,\"color\":[0,0,255,255],\"font\":{\"decoration\":\"none\",\"size\":10.5,\"style\":\"normal\",\"weight\":\"normal\"},\"haloColor\":[255,255,255,255],\"haloSize\":2,\"horizontalAlignment\":\"center\",\"kerning\":false,\"type\":\"esriTS\",\"verticalAlignment\":\"middle\",\"xoffset\":0,\"yoffset\":0}}"))
+  m_alternateRenderer(new SimpleRenderer(new SimpleMarkerSymbol(SimpleMarkerSymbolStyle::Diamond, QColor(Qt::magenta), 20, this), this))
 {
   m_busy = true;
   emit busyChanged();
@@ -101,7 +103,7 @@ void DisplaySubtypeFeatureLayer::getSubtypeSublayerAndDefineLabels(const Error& 
 
   // get the Street Light sublayer and define its labels
   m_subtypeSublayer = m_subtypeFeatureLayer->sublayerWithSubtypeName("Street Light", this);
-  m_labelDefinition = LabelDefinition::fromJson(m_labelJson, this);
+  m_labelDefinition = createLabelDefinition();
 
   if (!m_labelDefinition || !m_subtypeSublayer)
     return;
@@ -145,4 +147,22 @@ void DisplaySubtypeFeatureLayer::setSublayerMinScale()
   m_subtypeSublayer->setMinScale(currentScale);
   m_sublayerMinScale = currentScale;
   emit sublayerMinScaleChanged();
+}
+
+LabelDefinition* DisplaySubtypeFeatureLayer::createLabelDefinition()
+{
+  SimpleLabelExpression* labelExpression = new SimpleLabelExpression("[nominalvoltage]", this);
+
+  TextSymbol* textSymbol = new TextSymbol(this);
+  textSymbol->setSize(14);
+  textSymbol->setColor(Qt::blue);
+  textSymbol->setHaloColor(Qt::white);
+  textSymbol->setHaloWidth(3);
+  textSymbol->setHorizontalAlignment(HorizontalAlignment::Center);
+  textSymbol->setVerticalAlignment(VerticalAlignment::Middle);
+
+  LabelDefinition* labelDefinition = new LabelDefinition(labelExpression, textSymbol, this);
+  labelDefinition->setPlacement(LabelingPlacement::PointAboveRight);
+  labelDefinition->setUseCodedValues(true);
+  return labelDefinition;
 }

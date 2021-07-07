@@ -1,4 +1,4 @@
-# Display device location
+# Display device location with autopan modes
 
 Display your current position on the map, as well as switch between different types of auto pan modes.
 
@@ -14,9 +14,9 @@ Tap the button in the lower right (which starts in Stop mode). A menu will appea
 
 * Stop - Stops the location display.
 * On - Starts the location display with no `AutoPanMode` mode set.
-* Re-Center - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode::Recenter`.
-* Navigation - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode::Navigation`.
-* Compass - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode::CompassNavigation`.
+* Re-Center - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode.Recenter`.
+* Navigation - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode.Navigation`.
+* Compass - Starts the location display with auto pan mode set to `LocationDisplayAutoPanMode.CompassNavigation`.
 
 ## How it works
 
@@ -26,9 +26,9 @@ Tap the button in the lower right (which starts in Stop mode). A menu will appea
 
 ## Relevant API
 
-* Map
 * LocationDisplay
 * LocationDisplay.autoPanMode
+* Map
 * MapView
 
 ## Additional information

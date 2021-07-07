@@ -12,8 +12,7 @@
         "Enums.FeatureRequestModeOnInteractionNoCache",
         "FeatureLayer",
         "ServiceFeatureTable",
-        "ServiceFeatureTable.featureRequestMode",
-        "ServiceFeatureTable.populateFromService"
+        "ServiceFeatureTable.featureRequestMode"
     ],
     "redirect_from": [
         "/qt/latest/qml/sample-code/sample-qt-servicefeaturetable-nocache.htm"
@@ -22,8 +21,7 @@
         "Enums.FeatureRequestModeOnInteractionNoCache",
         "FeatureLayer",
         "ServiceFeatureTable",
-        "ServiceFeatureTable.featureRequestMode",
-        "ServiceFeatureTable.populateFromService"
+        "ServiceFeatureTable.featureRequestMode"
     ],
     "snippets": [
         "ServiceFeatureTable_NoCache.qml"

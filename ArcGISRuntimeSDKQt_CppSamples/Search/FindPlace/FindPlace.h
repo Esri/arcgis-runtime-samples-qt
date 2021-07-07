@@ -45,7 +45,7 @@ class FindPlace : public QQuickItem
 
 public:
   explicit FindPlace(QQuickItem* parent = nullptr);
-  ~FindPlace() override = default;
+  ~FindPlace() override;
 
   enum class SearchMode
   {

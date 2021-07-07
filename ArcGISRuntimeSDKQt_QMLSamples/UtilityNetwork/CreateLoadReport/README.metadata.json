@@ -1,0 +1,56 @@
+{
+    "category": "Utility network",
+    "description": "Create a simple electric distribution report that displays the count of customers and total load per phase by tracing downstream from a given point.",
+    "ignore": false,
+    "images": [
+        "screenshot.png"
+    ],
+    "keywords": [
+        "condition barriers",
+        "downstream trace",
+        "network analysis",
+        "subnetwork trace",
+        "trace configuration",
+        "traversability",
+        "upstream trace",
+        "utility network",
+        "validate consistency"
+    ],
+    "redirect_from": [
+        ""
+    ],
+    "relevant_apis": [
+        "CodedValueDomain",
+        "UtilityAssetGroup",
+        "UtilityAssetType",
+        "UtilityCategory",
+        "UtilityCategoryComparison",
+        "UtilityDomainNetwork",
+        "UtilityElement",
+        "UtilityElementTraceResult",
+        "UtilityFunctionTraceResult",
+        "UtilityNetwork",
+        "UtilityNetworkAttribute",
+        "UtilityNetworkAttributeComparison",
+        "UtilityNetworkDefinition",
+        "UtilityNetworkSource",
+        "UtilityNetworkTypes",
+        "UtilityTerminal",
+        "UtilityTerminalConfiguration",
+        "UtilityTier",
+        "UtilityTraceConditionalExpression",
+        "UtilityTraceConfiguration",
+        "UtilityTraceFunction",
+        "UtilityTraceFunctionListModel",
+        "UtilityTraceFunctionOutput",
+        "UtilityTraceOrCondition",
+        "UtilityTraceParameters",
+        "UtilityTraceResult",
+        "UtilityTraceResultListModel",
+        "UtilityTraversability"
+    ],
+    "snippets": [
+        "CreateLoadReport.qml"
+    ],
+    "title": "Create load report"
+}

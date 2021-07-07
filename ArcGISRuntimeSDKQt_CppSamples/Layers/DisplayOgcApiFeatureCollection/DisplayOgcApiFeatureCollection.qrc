@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/Samples/Layers/DisplayOgcApiFeatureCollection">
+        <file alias="sample.json">README.metadata.json</file>        
+        <file>DisplayOgcApiFeatureCollection.qml</file>
+        <file>DisplayOgcApiFeatureCollection.h</file>
+        <file>DisplayOgcApiFeatureCollection.cpp</file>
+        <file>main.qml</file>
+        <file>screenshot.png</file>
+        <file>README.md</file>
+    </qresource>
+</RCC>

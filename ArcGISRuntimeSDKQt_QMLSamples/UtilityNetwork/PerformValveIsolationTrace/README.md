@@ -10,26 +10,35 @@ Determine the set of operable features required to stop a network's resource, ef
 
 ## How to use the sample
 
-Create and set the configuration's filter barriers by selecting a category. Check or uncheck 'Include isolated features'. Click 'Trace' to run a subnetwork-based isolation trace.
+Select one or more features to use as filter barriers or create and set the configuration's filter barriers by selecting a category. Check or uncheck 'Include isolated features'. Press 'Trace' to run a subnetwork-based isolation trace. Press 'Reset' to clear filter barriers.
 
 ## How it works
 
-1.  Create a `MapView`.
-2.  Create and load a `UtilityNetwork` with a feature service URL.
-3.  Create a `Map` that contains `FeatureLayer`(s) that are part of this utility network.
-4.  Create a default starting location from a given asset type and global id.
-5.  Add a `GraphicsOverlay` with a `Graphic` that represents this starting location.
-6.  Populate the choice list for the 'Filter barrier: category exists' from `UtilityNetworkDefinition.categories`.
-7.  Get a default `UtilityTraceConfiguration` from a given tier in a domain network. Set its `Filter` with a new `UtilityTraceFilter`.
-8.  When 'Trace' is clicked,
-    - Create a new `UtilityCategoryComparison` with the selected category and `Enums.UtilityCategoryComparisonOperatorExists`. 
-    - Assign this condition to `TraceFilter.barriers` from the default configuration from step 7. Update this configuration's `includeIsolatedFeatures` property. 
-    - Create a `UtilityTraceParameters` with `Enums.UtilityTraceTypeIsolation` and default starting location from step 4. 
-    - Set its `TraceConfiguration` with this configuration and then, run a `UtilityNetwork.trace()`.
-9.  For every `FeatureLayer` in the map, select the features returned by `featuresForElements` from the elements matching their `NetworkSource.name` with the layer's `FeatureTable.name`.
+1. Create a `MapView`.
+2. Create and load a `ServiceGeodatabase` with a feature service URL and get tables by their layer IDs.
+3. Create a `Map` that contains `FeatureLayer`(s) created from the service geodatabases tables.
+4. Create and load a `UtilityNetwork` with the same feature service URL and the above map.
+5. Create a default starting location from a given asset type and global id.
+6. Get a default `UtilityTraceConfiguration` from a given tier in a domain network to set `UtilityTraceParameters.traceConfiguration` property.
+7. Add a `GraphicsOverlay` with a `Graphic` that represents this starting location, and another graphics overlay for the filter barriers.
+8. Populate the choice list for the 'Filter barrier: category exists' from `UtilityNetworkDefinition.categories`.
+9. When the map view is clicked, identify which features are at that location and add a graphic that represents a filter barrier.
+10. Create a `UtilityElement` for the identified feature and add this utility element to a list of filter barriers.
+   - If the element is a junction with more than one terminal, display a terminal picker. Then set the junction's Terminal property with the selected terminal.
+   - If an edge, use the result from `GeometryEngine.fractionAlong` to set the elements `fractionAlongEdge` property.
+11. If 'Trace' is clicked without filter barriers:
+   - Create a new `UtilityCategoryComparison` with the selected category and `Enums.UtilityCategoryComparisonOperatorExists`.
+   - Assign this condition to `UtilityTraceFilter.barriers` from the default configuration from step 6. Update this configuration's `includeIsolatedFeatures` property.
+   - Run `UtilityNetwork.trace`.
+12. If `Trace` is clicked with filter barriers:
+   - Update the default configurations include isolated features property.
+   - Update the `UtilityTraceParameters` filter barriers property.
+   - Run `UtilityNetwork.trace`.
+13.  For every `FeatureLayer` in the map, select the features returned by `featuresForElements` from the elements matching their `NetworkSource.name` with the layer's `FeatureTable.name`.
 
 ## Relevant API
 
+* ServiceGeodatabase
 * UtilityCategory
 * UtilityCategoryComparison
 * UtilityCategoryComparisonOperator

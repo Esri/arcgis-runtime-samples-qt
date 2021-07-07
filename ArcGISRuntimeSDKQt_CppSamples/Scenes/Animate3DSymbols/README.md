@@ -5,6 +5,10 @@ Also shows how to combine a `SceneView` and `MapView` in an MVC application with
 
 ![](screenshot.png)
 
+## Use case
+
+Visualize movement through a 3D landscape.
+
 ## How to use the sample
 
 Animation Controls (Top Left Corner):
@@ -36,7 +40,6 @@ Camera Controls (Top Right Corner):
 
 ## Relevant API
 
-* Scene
 * Camera
 * GlobeCameraController
 * Graphic
@@ -44,6 +47,7 @@ Camera Controls (Top Right Corner):
 * ModelSceneSymbol
 * OrbitGeoElementCameraController
 * Renderer
+* Scene
 * SceneProperties
 * SceneView
 * SurfacePlacement

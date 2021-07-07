@@ -56,22 +56,33 @@ void ExportTiles::componentComplete()
   m_mapView = findChild<MapQuickView*>("mapView");
 
   // create a tiled basemap
-  ArcGISTiledLayer* tiledLayer = new ArcGISTiledLayer(m_serviceUrl, this);
-  Basemap* basemap = new Basemap(tiledLayer, this);
+  Basemap* basemap = new Basemap(BasemapStyle::ArcGISImagery, this);
+
+  // create an export tile cache task when basemap has finished loading
+  connect(basemap, &Basemap::doneLoading, this, [this]()
+  {
+    if (!m_map->basemap()->baseLayers()->isEmpty())
+      createExportTileCacheTask();
+  });
 
   // create a new map instance
   m_map = new Map(basemap, this);
 
   // set an initial viewpoint
-  Envelope env(12362601, 936021, 10187678, 2567213, SpatialReference(3857));
-  Viewpoint viewpoint(env);
-  m_map->setInitialViewpoint(viewpoint);
+  m_map->setInitialViewpoint(Viewpoint(35, -117, 1e7));
 
   // set map on the map view
   m_mapView->setMap(m_map);
+}
+
+void ExportTiles::createExportTileCacheTask()
+{
+  // Get a tile layer from the basemap
+  ArcGISTiledLayer* tiledLayer = dynamic_cast<ArcGISTiledLayer*>(m_map->basemap()->baseLayers()->at(0));
 
   // create the task with the url and load it
-  m_exportTileCacheTask = new ExportTileCacheTask(m_serviceUrl, this);
+  m_exportTileCacheTask = new ExportTileCacheTask(tiledLayer->url(), this);
+
   connect(m_exportTileCacheTask, &ExportTileCacheTask::doneLoading, this, [this](Error error)
   {
     if (!error.isEmpty())
@@ -80,6 +91,7 @@ void ExportTiles::componentComplete()
       emit hideWindow(5000, false);
     }
   });
+
   m_exportTileCacheTask->load();
 }
 
@@ -94,40 +106,44 @@ void ExportTiles::exportTileCacheFromCorners(double xCorner1, double yCorner1, d
   // connect to sync task doneLoading signal
   connect(m_exportTileCacheTask, &ExportTileCacheTask::defaultExportTileCacheParametersCompleted, this, [this](QUuid, ExportTileCacheParameters parameters)
   {
-    m_parameters = parameters;
-
     //! [ExportTiles start job]
     // execute the task and obtain the job
-    ExportTileCacheJob* exportJob = m_exportTileCacheTask->exportTileCache(m_parameters, m_tempPath.path() + "/offlinemap.tpk");
+    ExportTileCacheJob* exportJob = m_exportTileCacheTask->exportTileCache(parameters, m_tempPath.path() + "/offlinemap.tpkx");
 
     // check if there is a valid job
     if (exportJob)
     {
+      connect(exportJob, &ExportTileCacheJob::progressChanged, this, [this, exportJob]()
+      {
+        m_exportTilesProgress = exportJob->progress();
+        emit exportTilesProgressChanged();
+      });
+
       // connect to the job's status changed signal
       connect(exportJob, &ExportTileCacheJob::jobStatusChanged, this, [this, exportJob]()
       {
         // connect to the job's status changed signal to know once it is done
         switch (exportJob->jobStatus()) {
-        case JobStatus::Failed:
-          emit updateStatus("Export failed");
-          emit hideWindow(5000, false);
-          break;
-        case JobStatus::NotStarted:
-          emit updateStatus("Job not started");
-          break;
-        case JobStatus::Paused:
-          emit updateStatus("Job paused");
-          break;
-        case JobStatus::Started:
-          emit updateStatus("In progress...");
-          break;
-        case JobStatus::Succeeded:
-          emit updateStatus("Adding TPK...");
-          emit hideWindow(1500, true);
-          displayOutputTileCache(exportJob->result());
-          break;
-        default:
-          break;
+          case JobStatus::Failed:
+            emit updateStatus("Export failed");
+            emit hideWindow(5000, false);
+            break;
+          case JobStatus::NotStarted:
+            emit updateStatus("Job not started");
+            break;
+          case JobStatus::Paused:
+            emit updateStatus("Job paused");
+            break;
+          case JobStatus::Started:
+            emit updateStatus("In progress...");
+            break;
+          case JobStatus::Succeeded:
+            emit updateStatus("Adding TPKX...");
+            emit hideWindow(1500, true);
+            displayOutputTileCache(exportJob->result());
+            break;
+          default:
+            break;
         }
       });
 
@@ -143,7 +159,7 @@ void ExportTiles::exportTileCacheFromCorners(double xCorner1, double yCorner1, d
   });
 
   // generate parameters
-  m_exportTileCacheTask->createDefaultExportTileCacheParameters(tileCacheExtent, m_mapView->mapScale(), m_exportTileCacheTask->mapServiceInfo().maxScale());
+  m_exportTileCacheTask->createDefaultExportTileCacheParameters(tileCacheExtent, m_mapView->mapScale(), m_mapView->mapScale() * 0.1);
 }
 
 // display the tile cache once the task is complete
@@ -163,7 +179,10 @@ void ExportTiles::displayOutputTileCache(TileCache* tileCache)
   {
     if (tiledLayer->loadStatus() == LoadStatus::Loaded)
     {
-      m_mapView->setViewpointScale(m_mapView->mapScale() * 0.5);
+      const double prevMapScale = m_mapView->mapScale();
+      m_map->setMinScale(prevMapScale);
+      m_map->setMaxScale(prevMapScale * 0.1);
+      m_mapView->setViewpointScale(prevMapScale * 0.5);
     }
   });
 }

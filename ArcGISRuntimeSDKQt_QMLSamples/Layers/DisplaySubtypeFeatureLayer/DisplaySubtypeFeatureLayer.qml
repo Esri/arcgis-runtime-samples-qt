@@ -26,7 +26,6 @@ Rectangle {
     width: 800
     height: 600
 
-    readonly property var labelJson: { "labelExpression": "[nominalvoltage]", "labelPlacement": "esriServerPointLabelPlacementAboveRight", "useCodedValues": true, "symbol": { "angle": 0, "backgroundColor": [ 0, 0, 0, 0 ], "borderLineColor": [ 0, 0, 0, 0 ], "borderLineSize": 0, "color": [ 0, 0, 255, 255 ], "font": { "decoration": "none", "size": 10.5, "style": "normal", "weight": "normal" }, "haloColor": [ 255, 255, 255, 255 ], "haloSize": 2, "horizontalAlignment": "center", "kerning": false, "type": "esriTS", "verticalAlignment": "middle", "xoffset": 0, "yoffset": 0 } }
     property var subtypeSublayer
     property var originalRenderer
     property double mapScale: mapView ? Math.round(mapView.mapScale) : 0
@@ -57,18 +56,37 @@ Rectangle {
                     }
                 }
 
+                LabelDefinition {
+                    id: subtypeSublayerLabelDefinition
+
+                    placement: Enums.LabelingPlacementPointAboveRight
+                    useCodedValues: true
+
+                    expression: SimpleLabelExpression {
+                        expression: "[nominalvoltage]"
+                    }
+
+                    textSymbol: TextSymbol {
+                        size: 14
+                        color: "blue"
+                        haloColor: "white"
+                        haloWidth: 3
+                        horizontalAlignment: Enums.HorizontalAlignmentCenter
+                        verticalAlignment: Enums.VerticalAlignmentMiddle
+                    }
+                }
+
                 onLoadStatusChanged: {
                     if (loadStatus != Enums.LoadStatusLoaded)
                         return;
 
                     // get the Street Light sublayer and define its labels
                     subtypeSublayer = subtypeFeatureLayer.sublayerWithSubtypeName("Street Light");
-                    const labelDefinition = ArcGISRuntimeEnvironment.createObject("LabelDefinition", { json : labelJson});
 
-                    if (!labelDefinition || !subtypeSublayer)
-                      return;
+                    if (!subtypeSublayer)
+                        return;
 
-                    subtypeSublayer.labelDefinitions.append(labelDefinition);
+                    subtypeSublayer.labelDefinitions.append(subtypeSublayerLabelDefinition);
                     subtypeSublayer.labelsEnabled = true;
 
                     // get the original renderer of the sublayer

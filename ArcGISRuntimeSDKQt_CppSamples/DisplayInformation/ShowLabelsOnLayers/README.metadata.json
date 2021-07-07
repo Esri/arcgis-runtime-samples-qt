@@ -6,6 +6,7 @@
         "screenshot.png"
     ],
     "keywords": [
+        "ArcadeLabelExression",
         "attribute",
         "deconfliction",
         "label",
@@ -22,6 +23,7 @@
         "/qt/latest/cpp/sample-code/sample-qt-showlabelsonlayers.htm"
     ],
     "relevant_apis": [
+        "ArcadeLabelExression",
         "FeatureLayer",
         "LabelDefinition",
         "TextSymbol"

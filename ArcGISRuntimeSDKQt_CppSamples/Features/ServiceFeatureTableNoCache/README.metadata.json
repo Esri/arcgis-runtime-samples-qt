@@ -12,7 +12,6 @@
         "FeatureLayer",
         "FeatureRequestMode::OnInteractionNoCache",
         "ServiceFeatureTable",
-        "ServiceFeatureTable::populateFromService",
         "ServiceFeatureTable::setFeatureRequestMode"
     ],
     "redirect_from": [
@@ -22,7 +21,6 @@
         "FeatureLayer",
         "FeatureRequestMode::OnInteractionNoCache",
         "ServiceFeatureTable",
-        "ServiceFeatureTable::populateFromService",
         "ServiceFeatureTable::setFeatureRequestMode"
     ],
     "snippets": [

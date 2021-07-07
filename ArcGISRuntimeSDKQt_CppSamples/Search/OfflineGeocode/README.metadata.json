@@ -2,24 +2,12 @@
     "category": "Search",
     "dataItems": [
         {
-            "itemId": "7277419732964266b909bf2bae1ddb54",
-            "path": "~/ArcGIS/Runtime/Data/tpk/streetmap_SD.tpk"
+            "itemId": "22c3083d4fa74e3e9b25adfc9f8c0496",
+            "path": "~/ArcGIS/Runtime/Data/tpkx/streetmap_SD.tpkx"
         },
         {
-            "itemId": "c88c170e18f74740a0e4c660a5ff51c4",
-            "path": "~/ArcGIS/Runtime/Data/Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.loc"
-        },
-        {
-            "itemId": "c88c170e18f74740a0e4c660a5ff51c4",
-            "path": "~/ArcGIS/Runtime/Data/Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.loc.xml"
-        },
-        {
-            "itemId": "c88c170e18f74740a0e4c660a5ff51c4",
-            "path": "~/ArcGIS/Runtime/Data/Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.locb"
-        },
-        {
-            "itemId": "c88c170e18f74740a0e4c660a5ff51c4",
-            "path": "~/ArcGIS/Runtime/Data/Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.lox"
+            "itemId": "3424d442ebe54f3cbf34462382d3aebe",
+            "path": "~/ArcGIS/Runtime/Data/Locators/SanDiegoStreetAddressLocator/SanDiego_StreetAddress.loc"
         }
     ],
     "description": "Geocode addresses to locations and reverse geocode locations to addresses offline.",

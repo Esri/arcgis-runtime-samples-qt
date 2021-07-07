@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/Samples/UtilityNetwork/CreateLoadReport">
+        <file alias="sample.json">README.metadata.json</file>        
+        <file>CreateLoadReport.qml</file>
+        <file>CreateLoadReport.h</file>
+        <file>CreateLoadReport.cpp</file>
+        <file>main.qml</file>
+        <file>screenshot.png</file>
+        <file>README.md</file>
+    </qresource>
+</RCC>

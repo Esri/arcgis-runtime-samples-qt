@@ -3,11 +3,11 @@
 This sample demonstrates an approach to using OAuth2 for authenticating with an ArcGIS portal.
 Unlike the pattern used in other samples where an `AuthenticationView` displays a log-in screen 
 using a `WebView` within the App itself, this example sends an authorization request to an external
-browser along with a redirect URI. The user can then authenticate securely in the browser 
-(using their ArcGIS.com credentials) and upon successful authentication, the redirect URI 
+browser along with a redirect URL. The user can then authenticate securely in the browser 
+(using their ArcGIS.com credentials) and upon successful authentication, the redirect URL 
 is notified with an authorization code to allow the log-in process to continue.
 
-In order for the call-back to the redirect URI to be handled by the app, it is necessary to 
+In order for the call-back to the redirect URL to be handled by the app, it is necessary to 
 register a custom URL protocol on the user's operating system: the process for doing this is
 different on each platform. 
 
@@ -21,7 +21,7 @@ Once you have logged on you can "Register New Application" to set up your app.
 
 Make a note of the `Client Id` for the App - this is what you will use in your App to begin the log-in process.
 
-### Add a Redirect URI
+### Add a Redirect URL
 Switch to the "Authentication" tab and scroll down to "Redirect URIs" section at the bottom of the page.
 
 Add the custom URL scheme you wish to use with the App - e.g. "exampleapp". This will be the base for the 

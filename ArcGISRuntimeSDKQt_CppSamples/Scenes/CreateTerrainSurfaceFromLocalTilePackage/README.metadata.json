@@ -2,8 +2,8 @@
     "category": "Scenes",
     "dataItems": [
         {
-            "itemId": "cce37043eb0440c7a5c109cf8aad5500",
-            "path": "~/ArcGIS/Runtime/Data/tpk/MontereyElevation.tpk"
+            "itemId": "52ca74b4ba8042b78b3c653696f34a9c",
+            "path": "~/ArcGIS/Runtime/Data/tpkx/MontereyElevation.tpkx"
         }
     ],
     "description": "Set the terrain surface with elevation described by a local tile package.",

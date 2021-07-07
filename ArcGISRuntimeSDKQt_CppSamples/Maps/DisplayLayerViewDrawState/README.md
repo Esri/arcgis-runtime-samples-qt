@@ -10,7 +10,7 @@ The view status includes information on the loading state of layers and whether 
 
 ## How to use the sample
 
-Tap the *Load layer* button to create a new layer and add it to the map. As you pan and zoom around the map, note how the `LayerViewStatus` flags change; for example, `LayerViewStatus::OutOfScale` becomes true when the map is scaled outside of the layer's min and max scale range. Tap the *Hide layer* button to hide the layer and observe the view state change to `LayerViewStatus::NotVisible`.
+Tap the *Load layer* button to add a feature layer to the map. The current view status of the layer will display on the map. Zoom in and out of the map and note the layer disappears when the map is scaled outside of its min and max scale range. Control the layer's visibility with the *Hide layer* button. If you disconnect your device from the network and pan around the map, a warning will display. Reconnect to the network to remove the warning. The layer's current view status will update accordingly as you carry out these actions.
 
 ## How it works
 

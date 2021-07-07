@@ -18,7 +18,10 @@ The layers in the map will be displayed in a table of contents. Toggle the check
 
 1. Create an empty `GroupLayer`.
 2. Create a new layer and add it to the group layer's layers collection.
-3. To build the table of contents:
+3. Set the group layer's `GroupVisibilityMode` to change its behavior:
+  * `Enums.GroupVisibilityModeIndependent` allows each sublayer to change its visibility independently.
+  * `Enums.GroupVisibilityModeExclusive` allows only one sublayer to be visible at a time.
+  * `Enums.GroupVisibilityModeInherited` treats the group layer as if it is one merged layer.
 4. Create a ListView and bind the model the the scene's operational layer list model.
 5. Create a delegate for the group layer and and another delegate for all other layers. The group layer delegate will have nested checkboxes.
 6. Check that the layer is a group layer. If true, load the group layer delegate. If false, load the other delegate.

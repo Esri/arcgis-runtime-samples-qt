@@ -116,7 +116,7 @@ GenerateOfflineMapLocalBasemapSample {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.Wrap
-                text: "This web map references a local basemap with the name 'naperville_imagery.tpk'.\nYou can use the basemap already on disk or download the basemap again"
+                text: "This web map references a local basemap with the name 'naperville_imagery.tpkx'.\nYou can use the basemap already on disk or download the basemap again"
             }
 
             Button {

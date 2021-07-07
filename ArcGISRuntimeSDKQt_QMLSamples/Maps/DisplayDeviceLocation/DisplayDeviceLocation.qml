@@ -54,6 +54,10 @@ Rectangle {
                 }
             }
         }
+
+        Component.onDestruction: {
+            mapView.locationDisplay.stop();
+        }
     }
 
     Rectangle {

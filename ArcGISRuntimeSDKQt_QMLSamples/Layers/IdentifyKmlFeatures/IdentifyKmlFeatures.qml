@@ -26,7 +26,7 @@ Rectangle {
 
     property Point clickedPoint: null
     property string calloutText: ""
-    readonly property url layerUrl: "https://www.wpc.ncep.noaa.gov/kml/noaa_chart/WPC_Day1_SigWx.kml"
+    readonly property url layerUrl: "https://www.wpc.ncep.noaa.gov/kml/noaa_chart/WPC_Day1_SigWx_latest.kml"
 
     MapView {
         id: mapView
@@ -36,7 +36,7 @@ Rectangle {
             id: callout
             calloutData: parent.calloutData
             autoAdjustWidth: false
-            calloutWidth: 400
+            calloutWidth: 300
             accessoryButtonHidden: true
             leaderPosition: leaderPositionEnum.Top
             calloutContent: customComponent
@@ -81,6 +81,11 @@ Rectangle {
                     callout.dismiss();
                     return;
                 }
+                // Google Earth only displays the placemarks with description or extended data. To
+                // match its behavior, add a description placeholder if the data source is empty
+                if (!identifyLayerResult.geoElements[0].description)
+                    identifyLayerResult.geoElements[0].description = "Weather condition"
+
                 calloutText = identifyLayerResult.geoElements[0].balloonContent;
                 callout.calloutData.location = clickedPoint;
                 callout.showCallout();

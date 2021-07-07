@@ -27,7 +27,7 @@ Rectangle {
     width: 800
     height: 600
 
-    readonly property url dataPath: System.userHomePath + "/ArcGIS/Runtime/Data/tpk/"
+    readonly property url dataPath: System.userHomePath + "/ArcGIS/Runtime/Data/tpkx/"
     readonly property url pinUrl: "qrc:/Samples/Routing/OfflineRouting/orange_symbol.png"
     property var findRoute;
     property Graphic selectedGraphic: null;
@@ -65,7 +65,7 @@ Rectangle {
             Basemap {
                 ArcGISTiledLayer {
                     TileCache {
-                        path: dataPath + "san_diego/streetmap_SD.tpk"
+                        path: dataPath + "san_diego/streetmap_SD.tpkx"
                     }
                 }
             }

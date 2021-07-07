@@ -28,6 +28,8 @@ namespace Esri
   }
 }
 
+class QTemporaryDir;
+
 #include <QQuickItem>
 
 class LocalServerMapImageLayer : public QQuickItem
@@ -43,11 +45,13 @@ public:
 
 private:
   void connectSignals();
+  QString shortestTempPath();
 
 private:
   Esri::ArcGISRuntime::Map* m_map = nullptr;
   Esri::ArcGISRuntime::MapQuickView* m_mapView = nullptr;
   Esri::ArcGISRuntime::LocalMapService* m_localMapService = nullptr;
+  std::unique_ptr<QTemporaryDir> m_tempDir;
 };
 
 #endif // LOCAL_SERVER_MAPIMAGELAYER_H

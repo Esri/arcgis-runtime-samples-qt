@@ -30,7 +30,7 @@
 using namespace Esri::ArcGISRuntime;
 
 namespace  {
-const QUrl datasetUrl("https://www.wpc.ncep.noaa.gov/kml/noaa_chart/WPC_Day1_SigWx.kml");
+const QUrl datasetUrl("https://www.wpc.ncep.noaa.gov/kml/noaa_chart/WPC_Day1_SigWx_latest.kml");
 }
 
 IdentifyKmlFeatures::IdentifyKmlFeatures(QObject* parent /* = nullptr */):
@@ -85,6 +85,11 @@ void IdentifyKmlFeatures::setMapView(MapQuickView* mapView)
     {
       if (KmlPlacemark* placemark = dynamic_cast<KmlPlacemark*>(geoElement))
       {
+        // Google Earth only displays the placemarks with description or extended data. To
+        // match its behavior, add a description placeholder if the data source is empty
+        if (placemark->description().isEmpty())
+          placemark->setDescription("Weather condition");
+
         m_calloutText = placemark->balloonContent();
         m_mapView->calloutData()->setLocation(m_clickedPoint);
         m_mapView->calloutData()->setVisible(true);

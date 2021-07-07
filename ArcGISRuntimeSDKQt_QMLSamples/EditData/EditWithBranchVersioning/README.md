@@ -60,9 +60,9 @@ The name of the version must meet the following criteria:
 * Note - the version name will have the username and a period (.) prepended to it. E.g "editor01.MyNewUniqueVersionName"
 
 Branch versioning access permission:
-1. VersionAccess::Public - Any portal user can view and edit the version.
-2. VersionAccess::Protected - Any portal user can view, but only the version owner, feature layer owner, and portal administrator can edit the version.
-3. VersionAccess::Private - Only the version owner, feature layer owner, and portal administrator can view and edit the version.
+1. VersionAccess.Public - Any portal user can view and edit the version.
+2. VersionAccess.Protected - Any portal user can view, but only the version owner, feature layer owner, and portal administrator can edit the version.
+3. VersionAccess.Private - Only the version owner, feature layer owner, and portal administrator can view and edit the version.
 
 ## Tags
 

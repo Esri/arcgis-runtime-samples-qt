@@ -90,8 +90,8 @@ void OfflineGeocode::componentComplete()
   m_mapView = findChild<MapQuickView*>("mapView");
   m_mapView->setWrapAroundMode(WrapAroundMode::Disabled);
 
-  // create a tiled layer using a local .tpk file
-  TileCache* tileCache = new TileCache(m_dataPath + "tpk/streetmap_SD.tpk", this);
+  // create a tiled layer using a local .tpkx file
+  TileCache* tileCache = new TileCache(m_dataPath + "tpkx/streetmap_SD.tpkx", this);
   connect(tileCache, &TileCache::errorOccurred, this, &OfflineGeocode::logError);
 
   m_tiledLayer = new ArcGISTiledLayer(tileCache, this);
@@ -109,7 +109,7 @@ void OfflineGeocode::componentComplete()
 
   // create locator task
   //! [OfflineGeocode create LocatorTask]
-  m_locatorTask = new LocatorTask(m_dataPath + "Locators/SanDiegoStreetAddress/SanDiego_StreetAddress.loc", this);
+  m_locatorTask = new LocatorTask(m_dataPath + "Locators/SanDiegoStreetAddressLocator/SanDiego_StreetAddress.loc", this);
   //! [OfflineGeocode create LocatorTask]
 
   // set the suggestions Q_PROPERTY

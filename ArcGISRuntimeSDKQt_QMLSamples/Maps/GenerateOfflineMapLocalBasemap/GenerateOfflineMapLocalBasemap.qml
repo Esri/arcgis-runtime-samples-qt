@@ -28,7 +28,7 @@ Rectangle {
     height: 600
 
     readonly property url outputMapPackage: System.temporaryFolder.url + "/OfflineMap_%1.mmpk".arg(new Date().getTime().toString())
-    readonly property url basemapDirectory: System.userHomePath + "/ArcGIS/Runtime/Data/tpk"
+    readonly property url basemapDirectory: System.userHomePath + "/ArcGIS/Runtime/Data/tpkx"
     readonly property string webMapId: "acc027394bc84c2fb04d1ed317aac674"
     property bool useLocalBasemap: false
 
@@ -102,8 +102,10 @@ Rectangle {
             // this will prevent new tiles from being generated on the server
             // and will reduce generation and download time/
             if (useLocalBasemap) {
-                // set the path where 'naperville_imagery.tpk' exists
+                // set the path where 'naperville_imagery.tpkx' exists
                 parameters.referenceBasemapDirectory = System.resolvedPath(basemapDirectory);
+                // A default reference basemap filename can be specified by the source portal item's advanced offline options.
+                parameters.referenceBasemapFilename = "naperville_imagery.tpkx";
             }
 
             // Take the map offline
@@ -229,7 +231,7 @@ Rectangle {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.Wrap
-                text: "This web map references a local basemap with the name 'naperville_imagery.tpk'.\nYou can use the basemap already on disk or download the basemap again"
+                text: "This web map references a local basemap with the name 'naperville_imagery.tpkx'.\nYou can use the basemap already on disk or download the basemap again"
             }
 
             Button {

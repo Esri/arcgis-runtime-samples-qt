@@ -15,7 +15,13 @@
         "scene",
         "symbol",
         "text",
-        "visualization"
+        "visualization",
+        "ArcadeLabelExpression",
+        "FeatureLayer",
+        "LabelDefinition",
+        "Scene",
+        "SceneView",
+        "TextSymbol"
     ],
     "redirect_from": [
         ""

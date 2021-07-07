@@ -68,6 +68,7 @@ private slots:
 private:
   Esri::ArcGISRuntime::MapQuickView* mapView() const;
   void setMapView(Esri::ArcGISRuntime::MapQuickView* mapView);
+  Esri::ArcGISRuntime::LabelDefinition* createLabelDefinition();
 
   Esri::ArcGISRuntime::Map* m_map = nullptr;
   Esri::ArcGISRuntime::Credential* m_cred = nullptr;
@@ -77,7 +78,6 @@ private:
   Esri::ArcGISRuntime::LabelDefinition* m_labelDefinition = nullptr;
   Esri::ArcGISRuntime::Renderer* m_originalRenderer = nullptr;
   Esri::ArcGISRuntime::SimpleRenderer* m_alternateRenderer = nullptr;
-  const QString m_labelJson;
 
   double m_mapScale = 0.0;
   double m_sublayerMinScale = 0.0;

@@ -20,18 +20,18 @@ Launch the app to view the "San Francisco offline tile package" as the basemap.
 
 ## Relevant API
 
- * ArcGISTiledLayer
- * Basemap
- * Map
- * TileCache
+* ArcGISTiledLayer
+* Basemap
+* Map
+* TileCache
 
 ## Offline data
 
-Read more about how to set up the sample's offline data [here](http://links.esri.com/ArcGISRuntimeQtSamples#use-offline-data-in-the-samples).
+Read more about how to set up the sample's offline data [here](http://links.esri.com/ArcGISRuntimeQtSamples#use*offline*data*in*the*samples).
 
 Link | Local Location
 ---------|-------|
-|[San Francisco Streets TPK](https://www.arcgis.com/home/item.html?id=3f1bbf0ec70b409a975f5c91f363fe7d)| `<userhome>`/ArcGIS/Runtime/Data/tpk/SanFrancisco.tpk |
+|[San Francisco Streets TPKX](https://www.arcgis.com/home/item.html?id=e4a398afe9a945f3b0f4dca1e4faccb5)| `<userhome>`/ArcGIS/Runtime/Data/tpkx/SanFrancisco.tpkx |
 
 ## About the data
 

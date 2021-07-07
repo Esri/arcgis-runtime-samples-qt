@@ -36,7 +36,7 @@ The feature layer is symbolized using a dictionary renderer that displays a sing
 
 ## Additional information
 
-For information about creating your own custom dictionary style, see the open source [dictionary-renderer-toolkit](https://esriurl.com/DictionaryToolkit).
+For information about creating your own custom dictionary style, see the open source [dictionary renderer toolkit](https://esriurl.com/DictionaryToolkit) on *GitHub*.
 
 ## Tags
 

@@ -6,7 +6,7 @@
             "path": "~/ArcGIS/Runtime/Data/styles/arcade_style/Restaurant.stylx"
         }
     ],
-    "description": "Use a custom dictionary style created from a web style or style file to symbolize features using a variety of attribute values.",
+    "description": "Use a custom dictionary created from a web style or style file (.stylx) to symbolize features using a variety of attribute values.",
     "ignore": false,
     "images": [
         "screenshot.png"
@@ -19,7 +19,11 @@
         "stylx",
         "unique value",
         "visualization",
-        "web style"
+        "web style",
+        "DictionaryRenderer",
+        "DictionarySymbolStyle",
+        "Portal",
+        "PortalItem"
     ],
     "redirect_from": [
         ""

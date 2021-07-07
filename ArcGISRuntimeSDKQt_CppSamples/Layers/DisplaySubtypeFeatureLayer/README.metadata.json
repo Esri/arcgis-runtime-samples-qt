@@ -15,18 +15,22 @@
         "utility network",
         "visible scale range",
         "LabelDefinition",
+        "SimpleLabelExpression",
         "ServiceFeatureTable",
         "SubtypeFeatureLayer",
-        "SubtypeSublayer"
+        "SubtypeSublayer",
+        "TextSymbol"
     ],
     "redirect_from": [
         ""
     ],
     "relevant_apis": [
         "LabelDefinition",
+        "SimpleLabelExpression",
         "ServiceFeatureTable",
         "SubtypeFeatureLayer",
-        "SubtypeSublayer"
+        "SubtypeSublayer",
+        "TextSymbol"
     ],
     "snippets": [
         "DisplaySubtypeFeatureLayer.qml",

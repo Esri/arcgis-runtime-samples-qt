@@ -21,9 +21,9 @@ When taking a web map offline, you may adjust the data (such as layers or tiles)
 7. Wait for the progress bar to indicate that the task has completed.
 8. You should see that the basemap does not display when you zoom out past a certain range and is padded around the original area of interest. The network dataset should extend beyond the target area. The System Valves and Service Connections should be omitted from the offline map and the Hydrants layer should contain a subset of the original features.
 
-# How it works
+## How it works
 
-The sample creates a `PortalItem` object using a web map’s ID. This portal item is also used to initialize an `OfflineMapTask` object. When the button is clicked, the sample requests the default parameters for the task, with the selected extent, by calling `OfflineMapTask::createDefaultGenerateOfflineMapParameters`. Once the parameters are retrieved, they are used to create a set of `GenerateOfflineMapParameterOverrides` by calling `OfflineMapTask::createGenerateOfflineMapParameterOverrides`. The overrides are then adjusted so that specific layers will be taken offline using custom settings.
+The sample creates a `PortalItem` object using a web map’s ID. This portal item is also used to initialize an `OfflineMapTask` object. When the button is clicked, the sample requests the default parameters for the task, with the selected extent, by calling `OfflineMapTask.createDefaultGenerateOfflineMapParameters`. Once the parameters are retrieved, they are used to create a set of `GenerateOfflineMapParameterOverrides` by calling `OfflineMapTask.createGenerateOfflineMapParameterOverrides`. The overrides are then adjusted so that specific layers will be taken offline using custom settings.
 
 ### Streets basemap (adjust scale range)
 
@@ -31,11 +31,11 @@ In order to minimize the download size for offline map, this sample reduces the 
 
 ### Streets Basemap (buffer extent)
 
-To provide context beyond the study area, the extent for streets basemap is padded. Again, the key for the basemap layer is used to obtain the key and the default extent `Geometry` is retrieved. This extent is then padded (by the distance specified in the UI) using the `GeoemetryEngine::bufferGeodesic` function and applied to the `ExportTileCacheParameters`.
+To provide context beyond the study area, the extent for streets basemap is padded. Again, the key for the basemap layer is used to obtain the key and the default extent `Geometry` is retrieved. This extent is then padded (by the distance specified in the UI) using the `GeoemetryEngine.bufferGeodesic` function and applied to the `ExportTileCacheParameters`.
 
 ### System Valves and Service Connections (skip layers)
 
-In this example, the survey is primarily concerned with the Hydrants layer, so other information is not taken offline: this keeps the download smaller and reduces clutter in the offline map. The two layers "System Valves" and "Service Connections" are retrieved from the operational layers list of the map. They are then used to construct an `OfflineMapParametersKey`. This key is used to obtain the relevant `GenerateGeodatabaseParameters` from the `GenerateOfflineMapParameterOverrides::generateGeodatabaseParameters` property. The `GenerateLayerOption` for each of the layers is removed from the geodatabse parameters `layerOptions` by checking for the `FeatureLayer::serviceLayerId`. Note, that you could also choose to download only the schema for these layers by setting the `GenerateLayerOption::queryOption` to `GenerateLayerQueryOption::None`.
+In this example, the survey is primarily concerned with the Hydrants layer, so other information is not taken offline: this keeps the download smaller and reduces clutter in the offline map. The two layers "System Valves" and "Service Connections" are retrieved from the operational layers list of the map. They are then used to construct an `OfflineMapParametersKey`. This key is used to obtain the relevant `GenerateGeodatabaseParameters` from the `GenerateOfflineMapParameterOverrides.generateGeodatabaseParameters` property. The `GenerateLayerOption` for each of the layers is removed from the geodatabse parameters `layerOptions` by checking for the `FeatureLayer.serviceLayerId`. Note, that you could also choose to download only the schema for these layers by setting the `GenerateLayerOption.queryOption` to `GenerateLayerQueryOption.None`.
 
 ### Hydrant Layer (filter features)
 

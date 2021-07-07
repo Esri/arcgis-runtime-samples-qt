@@ -2,8 +2,8 @@
     "category": "Maps",
     "dataItems": [
         {
-            "itemId": "628e8e3521cf45e9a28a12fe10c02c4d",
-            "path": "~/ArcGIS/Runtime/Data/tpk/naperville_imagery.tpk"
+            "itemId": "85282f2aaa2844d8935cdb8722e22a93",
+            "path": "~/ArcGIS/Runtime/Data/tpkx/naperville_imagery.tpkx"
         }
     ],
     "description": "Use the `OfflineMapTask` to take a web map offline, but instead of downloading an online basemap, use one which is already on the device.",

@@ -30,6 +30,7 @@
 #include "Viewpoint.h"
 
 #include <QDir>
+#include <QTemporaryDir>
 #include <QFile>
 
 using namespace Esri::ArcGISRuntime;
@@ -37,6 +38,19 @@ using namespace Esri::ArcGISRuntime;
 LocalServerFeatureLayer::LocalServerFeatureLayer(QQuickItem* parent) :
   QQuickItem(parent)
 {
+  // Create a temporary directory for the local server if one has not already been created
+  if (!LocalServer::appDataPath().isEmpty() && !LocalServer::tempDataPath().isEmpty())
+    return;
+
+  // create temp/data path
+  const QString tempPath = LocalServerFeatureLayer::shortestTempPath() + "/EsriQtTemp";
+
+  // create the directory
+  m_tempDir = std::unique_ptr<QTemporaryDir>(new QTemporaryDir(tempPath));
+
+  // set the temp & app data path for the local server
+  LocalServer::instance()->setTempDataPath(m_tempDir->path());
+  LocalServer::instance()->setAppDataPath(m_tempDir->path());
 }
 
 LocalServerFeatureLayer::~LocalServerFeatureLayer() = default;
@@ -141,4 +155,17 @@ void LocalServerFeatureLayer::startFeatureService() const
 {
   if (m_localFeatureService->status() != LocalServerStatus::Started || m_localFeatureService->status() != LocalServerStatus::Starting)
     m_localFeatureService->start();
+}
+
+QString LocalServerFeatureLayer::shortestTempPath()
+{
+  // get tmp and home paths
+  const QString tmpPath = QDir::tempPath();
+  const QString homePath = QDir::homePath();
+
+  // return whichever is shorter, temp or home path
+  if (homePath.length() > tmpPath.length())
+    return tmpPath;
+  else
+    return homePath;
 }

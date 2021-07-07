@@ -16,14 +16,17 @@ Pan and zoom around the United States. Labels for congressional districts will b
 
 To show custom labels on a feature layer:
 
-1. A `FeatureLayer` and `ServiceFeatureTable` are created by passing in a URL to the REST endpoint of a map service.
-2. A label JSON is created using the ArcGIS [JSON specification for labels](https://developers.arcgis.com/web-map-specification/objects/labelingInfo/).
-3. A `LabelDefinition` is created from the label JSON.
-4. The `LabelDefinition` is added to the list of `LabelDefinitions` in the `FeatureLayer` instance.
-5. Labels are enabled on the `FeatureLayer` by setting `labelsEnabled` to true.
+1. Create a `FeatureLayer` and `ServiceFeatureTable` by passing in a URL to the REST endpoint of a map service.
+2. Create an `ArcadeLabelExpression` for the label definition.
+    * You can use fields of the feature by using `$feature.field_name` in the expression.
+3. Create a `TextSymbol` to control how the label text is styled.
+4. Create a `LabelDefinition` from the `ArcadeLabelExpression` and `TextSymbol`.
+5. Add the `LabelDefinition` to the list of `LabelDefinitions` in the `FeatureLayer` instance.
+6. Enable labels on the `FeatureLayer` by setting `labelsEnabled` to true.
 
 ## Relevant API
 
+* ArcadeLabelExpression
 * FeatureLayer
 * LabelDefinition
 * TextSymbol
@@ -34,7 +37,7 @@ This sample uses the [USA 116th Congressional Districts](https://www.arcgis.com/
 
 ## Additional information
 
-Help regarding the JSON syntax for defining the `LabelDefinition.FromJson` syntax can be found in [labeling info](https://developers.arcgis.com/web-map-specification/objects/labelingInfo/) in the *Web map specification*.
+Help regarding the Arcade label expression script for defining a label definition can be found on the [ArcGIS Developers](https://developers.arcgis.com/arcade/) site.
 
 ## Tags
 

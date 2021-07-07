@@ -18,16 +18,16 @@ To show custom labels on a feature layer:
 
 1. Create a `ServiceFeatureTable` using a feature service URL.
 2. Create a `FeatureLayer` from the service feature table.
-3. Create a `TextSymbol` to use for displaying the label text.
-4. Create a JSON string for the label definition.
-    * Set the "LabelExpressionInfo.expression" key to express what the text the label should display. You can use fields of the feature by using `$feature.field_name` in the expression.
-    * To use the text symbol, set the "symbol" key to the symbol's JSON representation using `textSymbol.toJson()`.
-5. Create a label definition from the JSON using `LabelDefinition.fromJson(json)`.
+3. Create an `ArcadeLabelExpression` for the label definition.
+    * You can use fields of the feature by using `$feature.field_name` in the expression.
+4. Create a `TextSymbol` to control how the label text is styled.
+5. Create a `LabelDefinition` by passing in the `ArcadeLabelExpression` and `TextSymbol`.
 6. Add the definition to the feature layer with `featureLayer.labelDefinitions().append(labelDefinition)` .
 7. Lastly, enable labels on the layer using `featureLayer.setLabelsEnabled()`.
 
 ## Relevant API
 
+* ArcadeLabelExpression
 * FeatureLayer
 * LabelDefinition
 * TextSymbol
@@ -38,7 +38,7 @@ This sample uses the [USA 116th Congressional Districts](https://www.arcgis.com/
 
 ## Additional information
 
-Help regarding the JSON syntax for defining the `LabelDefinition.FromJson` syntax can be found in [labeling info](https://developers.arcgis.com/web-map-specification/objects/labelingInfo/) in the *Web map specification*.
+Help regarding the Arcade label expression script for defining a label definition can be found on the [ArcGIS Developers](https://developers.arcgis.com/arcade/) site.
 
 ## Tags
 

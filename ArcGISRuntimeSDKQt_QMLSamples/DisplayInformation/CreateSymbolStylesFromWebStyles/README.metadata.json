@@ -9,7 +9,12 @@
         "renderer",
         "symbol",
         "symbology",
-        "web style"
+        "web style",
+        "FeatureLayer",
+        "Symbol",
+        "SymbolStyle",
+        "UniqueValue",
+        "UniqueValueRenderer"
     ],
     "redirect_from": [
         ""

@@ -39,7 +39,7 @@ Read more about how to set up the sample's offline data [here](http://links.esri
 Link | Local Location
 ---------|-------|
 |[Yellowstone mmpk File](https://www.arcgis.com/home/item.html?id=e1f3a7254cb845b09450f54937c16061)| `<userhome>`/ArcGIS/Runtime/Data/mmpk/Yellowstone.mmpk |
-|[SanFrancisco mmpk File](https://www.arcgis.com/home/item.html?id=133ae60b710b4d29bec40fbbebb136ab)| `<userhome>`/ArcGIS/Runtime/Data/mmpk/SanFrancisco.mmpk |
+|[SanFrancisco mmpk File](https://www.arcgis.com/home/item.html?id=260eb6535c824209964cf281766ebe43)| `<userhome>`/ArcGIS/Runtime/Data/mmpk/SanFrancisco.mmpk |
 
 ## Tags
 

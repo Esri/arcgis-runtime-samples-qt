@@ -1,4 +1,4 @@
-# Display device location
+# Display device location with autopan modes
 
 Display your current position on the map, as well as switch between different types of auto pan modes.
 
@@ -26,9 +26,9 @@ Tap the button in the lower right (which starts in Stop mode). A menu will appea
 
 ## Relevant API
 
-* Map
 * LocationDisplay
 * LocationDisplay::setAutoPanMode
+* Map
 * MapView
 
 ## Additional information

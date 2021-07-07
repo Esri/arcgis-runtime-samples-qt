@@ -1,7 +1,8 @@
 <RCC>
     <qresource prefix="/Samples/UtilityNetwork/PerformValveIsolationTrace">
-        <file alias="sample.json">README.metadata.json</file>        
+        <file alias="sample.json">README.metadata.json</file>
         <file>PerformValveIsolationTrace.qml</file>
+        <file>TerminalPickerView.qml</file>
         <file>screenshot.png</file>
         <file>README.md</file>
     </qresource>

@@ -346,6 +346,9 @@ class READMEFile:
                 self.sections[section_title] = section_body
 
     def check_readme_for_errors(self) -> list:
+        # Some samples don't have a conventional README so they should be skipped.
+        if self.sample_name in ignore_samples_READMEs:
+            return []
         self.readme_errors = []
         self.readme_errors += (self.check_readme_section_headers())
         self.readme_errors += (self.check_readme_sections())
@@ -517,6 +520,10 @@ possible_readme_headers = [
     'About the data',
     'Additional information',
     'Tags'
+]
+
+ignore_samples_READMEs = [
+    'OAuthRedirectExample'
 ]
 
 # ***** HELPER FUNCTIONS

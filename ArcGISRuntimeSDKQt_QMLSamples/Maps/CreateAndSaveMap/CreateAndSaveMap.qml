@@ -144,15 +144,16 @@ Rectangle {
         // Create the Basemap
         let selectedBasemap;
         if (basemap === "Streets")
-            selectedBasemap = ArcGISRuntimeEnvironment.createObject("BasemapStreets");
+            selectedBasemap = Enums.BasemapStyleArcGISStreets;
         else if (basemap === "Imagery")
-            selectedBasemap = ArcGISRuntimeEnvironment.createObject("BasemapImagery");
+            selectedBasemap = Enums.BasemapStyleArcGISImagery;
         else if (basemap === "Topographic")
-            selectedBasemap = ArcGISRuntimeEnvironment.createObject("BasemapTopographic");
+            selectedBasemap = Enums.BasemapStyleArcGISTopographic;
         else if (basemap === "Oceans")
-            selectedBasemap = ArcGISRuntimeEnvironment.createObject("BasemapOceans");
+            selectedBasemap = Enums.BasemapStyleArcGISOceans;
 
         // Create the Map with the basemap
+        selectedBasemap = ArcGISRuntimeEnvironment.createObject("Basemap", {initStyle: selectedBasemap});
         const map = ArcGISRuntimeEnvironment.createObject("Map", { basemap: selectedBasemap }, mapView);
 
         map.saveStatusChanged.connect(()=> {

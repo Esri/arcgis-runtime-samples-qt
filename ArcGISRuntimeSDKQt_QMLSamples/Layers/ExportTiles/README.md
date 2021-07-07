@@ -14,12 +14,12 @@ Pan and zoom into the desired area, making sure the area is within the red bound
 
 ## How it works
 
-Tap on the `Export tiles` button, and this will obtain the default parameters and call `exportTileCacheWithParameters`, which will return a job. The job must be started manually, and once started can be canceled at anytime. Once the job completes successfully, the output tile cache is added as an `ArcGISTiledLayer` to the map.
-1. Create an `ExportTileCacheTask`, passing in the URL of the tiled layer.
-2. Create default `ExportTileCacheParameters` for the task by calling `createDefaultExportTileCacheParameters`, specifying extent, minimum scale and maximum scale.
-3. Use the parameters and a path to create an `ExportTileCacheJob` from the task.
-4. Start the job, and when it completes successfully, get the resulting `TileCache`.
-5. Use the tile cache to create an `ArcGISTiledLayer`, and display it in the map.
+1. Create and load a Map with a basemap style that includes a raster base layer.
+2. Create an `ExportTileCacheTask` with a URL from a raster base layer of a basemap.
+3. Create default `ExportTileCacheParameters` for the task, specifying extent, minimum scale and maximum scale. Limiting the difference between the minimum and maximum scales will decrease the size of the resulting tile package and the time it takes to create.
+4. Use the parameters and a path to create an `ExportTileCacheJob` from the task.
+5. Start the job, and when it completes successfully, get the resulting `TileCache`.
+6. Use the tile cache to create an `ArcGISTiledLayer`, and display it in the map.
 
 ## Relevant API
 

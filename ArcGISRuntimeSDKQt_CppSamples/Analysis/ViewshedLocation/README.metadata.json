@@ -7,8 +7,8 @@
     ],
     "keywords": [
         "3D",
-        "Scene",
         "frustum",
+        "scene",
         "viewshed",
         "visibility analysis",
         "AnalysisOverlay",

@@ -5,6 +5,10 @@ Also shows how to combine a `SceneView` and `MapView` in an MVC application with
 
 ![](screenshot.png)
 
+## Use case
+
+Visualize movement through a 3D landscape.
+
 ## How to use the sample
 
 Animation Controls (Top Left Corner):
@@ -27,7 +31,7 @@ Camera Controls (Top Right Corner):
 2. Create a `ModelSceneSymbol` object.
 3. Create a `Graphic` object and set its geometry to a `Point`.
 4. Set the `ModelSceneSymbol` object to the graphic.
-5. Add heading, pitch, and roll attributes to the graphic. Get the attributes from the graphic with `Graphic::attributes`.
+5. Add heading, pitch, and roll attributes to the graphic. Get the attributes from the graphic with `Graphic.attributes`.
 6. Create a `SimpleRenderer` object and set its expression properties.
 7. Add graphic and a renderer to the graphics overlay.
 8. Create an `OrbitGeoElementCameraController` which is set to target the graphic.
@@ -36,7 +40,6 @@ Camera Controls (Top Right Corner):
 
 ## Relevant API
 
-* Scene
 * Camera
 * GlobeCameraController
 * Graphic
@@ -44,6 +47,7 @@ Camera Controls (Top Right Corner):
 * ModelSceneSymbol
 * OrbitGeoElementCameraController
 * Renderer
+* Scene
 * SceneProperties
 * SceneView
 * SurfacePlacement

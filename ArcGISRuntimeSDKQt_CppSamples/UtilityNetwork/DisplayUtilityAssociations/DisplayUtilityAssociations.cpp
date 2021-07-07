@@ -203,7 +203,7 @@ void DisplayUtilityAssociations::connectSignals()
     {
 
       // check if the graphics overlay already contains the association
-      const bool uniqueGraphic = std::none_of(graphics->begin(), graphics->end(), [=](const Graphic* graphic)
+      const bool uniqueGraphic = std::none_of(graphics->begin(), graphics->end(), [association](const Graphic* graphic)
       {
         const AttributeListModel* attributes = graphic->attributes();
         return attributes->containsAttribute("GlobalId") && qvariant_cast<QUuid>((*graphic->attributes())["GlobalId"]) == association->globalId();

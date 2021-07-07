@@ -29,5 +29,5 @@
     "snippets": [
         "DisplayDeviceLocation.qml"
     ],
-    "title": "Display device location"
+    "title": "Display device location with autopan modes"
 }

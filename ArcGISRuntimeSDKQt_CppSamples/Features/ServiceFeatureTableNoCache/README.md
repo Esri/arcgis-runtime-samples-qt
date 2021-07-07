@@ -22,7 +22,6 @@ Run the sample and pan and zoom around the map. With each interaction, new featu
 * FeatureLayer
 * FeatureRequestMode::OnInteractionNoCache
 * ServiceFeatureTable
-* ServiceFeatureTable::populateFromService
 * ServiceFeatureTable::setFeatureRequestMode
 
 ## About the data

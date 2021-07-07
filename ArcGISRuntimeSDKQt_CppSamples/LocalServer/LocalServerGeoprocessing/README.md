@@ -60,7 +60,7 @@ Read more about how to set up the sample's offline data [here](http://links.esri
 Link | Local Location
 ---------|-------|
 |[Contour geoprocessing package](https://www.arcgis.com/home/item.html?id=a680362d6a7447e8afe2b1eb85fcde30)| `<userhome>`/ArcGIS/Runtime/Data/gpkx/Contour.gpkx |
-|[Raster Hillshade TPK](https://www.arcgis.com/home/item.html?id=f7c7b4a30fb9415896ba0d1921fe014b)| `<userhome>`/ArcGIS/Runtime/Data/tpk/RasterHillshade.tpk |
+|[Raster Hillshade TPKX](https://www.arcgis.com/home/item.html?id=3f38e1ae7c5948cc95334ba3a142a4ec)| `<userhome>`/ArcGIS/Runtime/Data/tpkx/RasterHillshade.tpkx |
 
 ## Additional information
 

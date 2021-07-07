@@ -42,6 +42,8 @@ This sample uses the [Philadelphia Mobile Scene Package](https://www.arcgis.com/
 
 ## Additional information
 
+**Tabletop AR** is one of three main patterns for working with geographic information in augmented reality.
+
 #### Clone the toolkit repo - Required for AR samples
 
 Change directory into your locally cloned samples repo and then use `git clone` to get a copy of the [ArcGIS Runtime Toolkit - Qt](https://github.com/Esri/arcgis-runtime-toolkit-qt.git).

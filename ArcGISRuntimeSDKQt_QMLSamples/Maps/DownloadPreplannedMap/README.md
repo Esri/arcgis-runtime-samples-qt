@@ -45,7 +45,7 @@ The [Naperville stormwater network map](https://arcgisruntime.maps.arcgis.com/ho
 * `PreplannedUpdateModeSyncWithFeatureServices` - Changes, including local edits, will be synced directly with the underlying feature services. This is the default update mode.
 * `PreplannedUpdateModeDownloadScheduledUpdates` - Scheduled, read-only updates will be downloaded from the online map area and applied to the local mobile geodatabases.
 
-For more information about offline workflows, see [Offline](https://developers.arcgis.com/documentation/mapping-apis-and-location-services/offline/) in the *ArcGIS Developers* guide.
+For more information about offline workflows, see [Offline maps, scenes, and data](https://developers.arcgis.com/documentation/mapping-apis-and-location-services/offline/) in the *ArcGIS Developers* guide.
 
 ## Tags
 

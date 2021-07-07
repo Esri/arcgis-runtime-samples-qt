@@ -10,26 +10,35 @@ Determine the set of operable features required to stop a network's resource, ef
 
 ## How to use the sample
 
-Create and set the configuration's filter barriers by selecting a category. Check or uncheck 'Include isolated features'. Click 'Trace' to run a subnetwork-based isolation trace.
+Select one or more features to use as filter barriers or create and set the configuration's filter barriers by selecting a category. Check or uncheck 'Include isolated features'. Press 'Trace' to run a subnetwork-based isolation trace. Press 'Reset' to clear filter barriers.
 
 ## How it works
 
-1.  Create a `MapView`.
-2.  Create and load a `UtilityNetwork` with a feature service URL.
-3.  Create a `Map` that contains `FeatureLayer`(s) that are part of this utility network.
-4.  Create a default starting location from a given asset type and global id.
-5.  Add a `GraphicsOverlay` with a `Graphic` that represents this starting location.
-6.  Populate the choice list for the 'Filter barrier: category exists' from `UtilityNetworkDefinition.categories`.
-7.  Get a default `UtilityTraceConfiguration` from a given tier in a domain network. Set its `Filter` with a new `UtilityTraceFilter`.
-8.  When 'Trace' is clicked,
-    - Create a new `UtilityCategoryComparison` with the selected category and `UtilityCategoryComparisonOperator::Exists`. 
-    - Assign this condition to `TraceFilter.setBarriers` from the default configuration from step 7. Update this configuration's `includeIsolatedFeatures` property. 
-    - Create a `UtilityTraceParameters` with `UtilityTraceType::Isolation` and default starting location from step 4. 
-    - Set its `TraceConfiguration` with this configuration and then, run a `UtilityNetwork.trace()`.
-9.  For every `FeatureLayer` in the map, select the features returned by `featuresForElements` from the elements matching their `NetworkSource.name` with the layer's `FeatureTable.name`.
+1. Create a `MapView` and connect to its `mouseClicked` signal.
+2. Create and load a `ServiceGeodatabase` with a feature service URL and get tables by their layer IDs.
+3. Create a `Map` that contains `FeatureLayer`(s) created from the `ServiceGeodatabase`'s tables.
+4. Create and load a `UtilityNetwork` with the same feature service URL as the `Map`.
+5. Create `UtilityTraceParameters` with `UtilityTraceType::Isolation` and a starting location from a given asset type and global ID.
+6. Get a default `UtilityTraceConfiguration` from a given tier in a domain network to set `UtilityTraceParameters::traceConfiguration` property.
+7. Add a `GraphicsOverlay` with a `Graphic` that represents this starting location, and another graphics overlay for the filter barriers.
+8. Populate the choice list for the 'Filter barrier: category exists' from `UtilityNetworkDefinition::categories`.
+9. When the map view is clicked, identify which features are at that location and add a graphic that represents a filter barrier.
+10. Create a `UtilityElement` for the identified feature and add this utility element to a list of filter barriers.
+   - If the element is a junction with more than one terminal, display a terminal picker. Then set the junction's `terminal` property with the selected terminal.
+   - If an edge, set its `fractionAlongEdge` property using `GeometryEngine::fractionAlong`.
+11. If 'Trace' is clicked without filter barriers:
+   - Create a new `UtilityCategoryComparison` with the selected category and `UtilityCategoryComparisonOperator::Exists`.
+   - Create a new `UtilityTraceFilter` with this condition as `Barriers` to set `Filter` and update `IncludeIsolatedFeatures` properties of the default configuration from step 5.
+   - Run `UtilityNetwork::trace`.
+    If `Trace` is clicked with filter barriers:
+   - Update `IncludeIsolatedFeatures` property of the default configuration from step 5.
+   - Run `UtilityNetwork::trace`.
+12.  For every `FeatureLayer` in the map, select the features returned by `featuresForElements` from the elements matching their `NetworkSource::name` with the layer's `FeatureTable::name`.
 
 ## Relevant API
 
+* GeometryEngine::fractionAlong
+* ServiceGeodatabase
 * UtilityCategory
 * UtilityCategoryComparison
 * UtilityCategoryComparisonOperator
@@ -38,6 +47,7 @@ Create and set the configuration's filter barriers by selecting a category. Chec
 * UtilityElementTraceResult
 * UtilityNetwork
 * UtilityNetworkDefinition
+* UtilityTerminal
 * UtilityTier
 * UtilityTraceFilter
 * UtilityTraceParameters
@@ -50,11 +60,12 @@ The [Naperville gas network feature service](https://sampleserver7.arcgisonline.
 
 ## Additional information
 
+Using utility network on ArcGIS Enterprise 10.8 requires an ArcGIS Enterprise member account licensed with the [Utility Network user type extension](https://enterprise.arcgis.com/en/portal/latest/administer/windows/license-user-type-extensions.htm#ESRI_SECTION1_41D78AD9691B42E0A8C227C113C0C0BF). Please refer to the [utility network services documentation](https://enterprise.arcgis.com/en/server/latest/publish-services/windows/utility-network-services.htm).
+
 Credentials:
 * Username: viewer01
 * Password: I68VGU^nMurF
 
 ## Tags
 
-category comparison, condition barriers, isolated features, network analysis, subnetwork trace, trace configuration, trace filter, utility network
-
+category comparison, condition barriers, filter barriers, isolated features, network analysis, subnetwork trace, trace configuration, trace filter, utility network

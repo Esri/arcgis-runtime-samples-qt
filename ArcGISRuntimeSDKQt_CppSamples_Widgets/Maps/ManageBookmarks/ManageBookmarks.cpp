@@ -58,7 +58,7 @@ ManageBookmarks::ManageBookmarks(QWidget* parent) :
     createInitialBookmarks();
 
     // Connect the combo box signal to lambda for switching between bookmarks
-    connect(m_bookmarkCombo, QOverload<const QString&>::of(&QComboBox::currentTextChanged), [=](const QString& name) {
+    connect(m_bookmarkCombo, QOverload<const QString&>::of(&QComboBox::currentTextChanged), [this](const QString& name) {
         // Use the map of bookmarks created to obtain the viewpoint of a given name
         m_mapView->setViewpoint(m_bookmarks.value(name));
     });

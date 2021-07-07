@@ -31,5 +31,5 @@
         "DisplayDeviceLocation.cpp",
         "DisplayDeviceLocation.h"
     ],
-    "title": "Display device location"
+    "title": "Display device location with autopan modes"
 }

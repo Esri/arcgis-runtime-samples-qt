@@ -34,5 +34,5 @@
         "OSM_Layer.cpp",
         "OSM_Layer.h"
     ],
-    "title": "OpenStreetMap Layer"
+    "title": "OpenStreetMap layer"
 }

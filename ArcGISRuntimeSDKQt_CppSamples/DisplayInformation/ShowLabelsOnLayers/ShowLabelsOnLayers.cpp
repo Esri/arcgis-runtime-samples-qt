@@ -20,11 +20,13 @@
 
 #include "ShowLabelsOnLayers.h"
 
+#include "ArcadeLabelExpression.h"
+#include "FeatureLayer.h"
+#include "LabelDefinition.h"
 #include "Map.h"
 #include "MapQuickView.h"
 #include "ServiceFeatureTable.h"
-#include "FeatureLayer.h"
-#include "LabelDefinition.h"
+#include "TextSymbol.h"
 
 using namespace Esri::ArcGISRuntime;
 
@@ -63,10 +65,8 @@ void ShowLabelsOnLayers::componentComplete()
   m_map->operationalLayers()->append(featureLayer);
 
   // Apply labels to the feature layer
-  const QString republicanJson = createRepublicanJson();
-  const QString democratJson = createDemocratJson();
-  LabelDefinition* republicanLabelDef = LabelDefinition::fromJson(republicanJson, this);
-  LabelDefinition* democratLabelDef = LabelDefinition::fromJson(democratJson, this);
+  LabelDefinition* republicanLabelDef = createRepublicanLabelDefinition();
+  LabelDefinition* democratLabelDef = createDemocratLabelDefinition();
   featureLayer->labelDefinitions()->append(republicanLabelDef);
   featureLayer->labelDefinitions()->append(democratLabelDef);
   featureLayer->setLabelsEnabled(true);
@@ -76,92 +76,54 @@ void ShowLabelsOnLayers::componentComplete()
   m_mapView->setMap(m_map);
 }
 
-// Creates the label JSON for use in the LabelDefinition
-QString ShowLabelsOnLayers::createRepublicanJson() const
+LabelDefinition* ShowLabelsOnLayers::createRepublicanLabelDefinition()
 {
-  // Help regarding the JSON syntax for defining the LabelDefinition.FromJson syntax can be found here:
-  // https://developers.arcgis.com/web-map-specification/objects/labelingInfo/
-  // This particular JSON string will have the following characteristics:
-  // (1) The 'labelExpressionInfo' defines that the label text displayed comes from the fields 'NAME',
-  //     'PARTY' (R or D), and 'CDFIPS' in the feature service in the format
-  //     "Firstname Lastname (R)
-  //     District #".
-  // (2) The 'labelPlacement' will be placed horizontally in the polygon.
-  // (3) The 'where' clause restricts the labels to data from Republican districts.
-  // (4) The 'symbol' for the labeled text will be red with a white halo.
+  // This particular LabelDefinition will have the following characteristics:
+  // (1) The 'ArcadeLabelExpression' defines that the label text displayed comes from the fields 'NAME',
+  //     the first letter of PARTY' (R or D), and 'CDFIPS' in the feature service in the format:
+  //         Firstname Lastname (R)
+  //         District #
+  // (2) The 'TextSymbol' for the labeled text will be red with a white halo centered in the target polygon.
+  // (3) The 'where' clause of the 'LabelDefinition' restricts the labels to data from Republican districts.
 
-  QString republicanJson = R"rawstring(
-                 {
-                    "labelExpressionInfo": {
-                      "expression": "$feature.NAME + ' (' + left($feature.PARTY,1) + ')\\nDistrict ' + $feature.CDFIPS" // arcade expression
-                    },
-                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
-                    "where": "PARTY = 'Republican'",
-                    "symbol": {
-                      "angle": 0,
-                      "backgroundColor": [0,0,0,0],
-                      "borderLineColor": [0,0,0,0],
-                      "borderLineSize": 0,
-                      "color": [255,0,0,255],
-                      "font": {
-                        "decoration": "none",
-                        "size": 8,
-                        "style": "normal",
-                        "weight": "normal"
-                      },
-                    "haloColor": [255,255,255,255],
-                    "haloSize": 1.5,
-                    "horizontalAlignment": "center",
-                    "kerning": false,
-                    "type": "esriTS",
-                    "verticalAlignment": "middle",
-                    "xoffset": 0,
-                    "yoffset": 0
-                  }
-                })rawstring";
-  return republicanJson;
+  ArcadeLabelExpression* republicanArcadeLabelExpression = new ArcadeLabelExpression("$feature.NAME + ' (' + left($feature.PARTY,1) + ')\\nDistrict ' + $feature.CDFIPS", this);
+
+  TextSymbol* republicanTextSymbol = new TextSymbol(this);
+  republicanTextSymbol->setSize(11);
+  republicanTextSymbol->setColor(Qt::red);
+  republicanTextSymbol->setHaloColor(Qt::white);
+  republicanTextSymbol->setHaloWidth(2);
+  republicanTextSymbol->setHorizontalAlignment(HorizontalAlignment::Center);
+  republicanTextSymbol->setVerticalAlignment(VerticalAlignment::Middle);
+
+  LabelDefinition* republicanLabelDefinition = new LabelDefinition(republicanArcadeLabelExpression, republicanTextSymbol, this);
+  republicanLabelDefinition->setWhereClause("PARTY = 'Republican'");
+
+  return republicanLabelDefinition;
 }
 
-QString ShowLabelsOnLayers::createDemocratJson() const
+LabelDefinition* ShowLabelsOnLayers::createDemocratLabelDefinition()
 {
-  // This particular JSON string will have the following characteristics:
-  // (1) The 'labelExpressionInfo' defines that the label text displayed comes from the fields 'NAME',
-  //     'PARTY', and 'CDFIPS' in the feature service in the format
-  //     "Firstname Lastname (D)
-  //     District #".
-  // (2) The 'labelPlacement' will be placed horizontally in the polygon.
-  // (3) The 'where' clause restricts the labels to data from Democrat districts.
-  // (4) The 'symbol' for the labeled text will be blue with a white halo.
+  // This particular LabelDefinition will have the following characteristics:
+  // (1) The 'ArcadeLabelExpression' defines that the label text displayed comes from the fields 'NAME',
+  //     the first letter of PARTY' (R or D), and 'CDFIPS' in the feature service in the format:
+  //         Firstname Lastname (D)
+  //         District #
+  // (2) The 'TextSymbol' for the labeled text will be blue with a white halo centered in the target polygon.
+  // (3) The 'where' clause of the 'LabelDefinition' restricts the labels to data from Democrat districts.
 
-  QString democratJson = R"rawstring(
-                           {
-                    "labelExpressionInfo": {
-                      "expression": "$feature.NAME + ' (' + left($feature.PARTY,1) + ')\\nDistrict ' + $feature.CDFIPS" // arcade expression
-                    },
-                    "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
-                    "where": "PARTY = 'Democrat'",
-                    "symbol": {
-                      "angle": 0,
-                      "backgroundColor": [0,0,0,0],
-                      "borderLineColor": [0,0,0,0],
-                      "borderLineSize": 0,
-                      "color": [0,0,255,255],
-                      "font": {
-                        "decoration": "none",
-                        "size": 8,
-                        "style": "normal",
-                        "weight": "normal"
-                      },
-                    "haloColor": [255,255,255,255],
-                    "haloSize": 1.5,
-                    "horizontalAlignment": "center",
-                    "kerning": false,
-                    "type": "esriTS",
-                    "verticalAlignment": "middle",
-                    "xoffset": 0,
-                    "yoffset": 0
-                  }
-                })rawstring";
+  ArcadeLabelExpression* democratArcadeLabelExpression = new ArcadeLabelExpression("$feature.NAME + ' (' + left($feature.PARTY,1) + ')\\nDistrict ' + $feature.CDFIPS", this);
 
-  return democratJson;
+  TextSymbol* democratTextSymbol = new TextSymbol(this);
+  democratTextSymbol->setSize(11);
+  democratTextSymbol->setColor(Qt::blue);
+  democratTextSymbol->setHaloColor(Qt::white);
+  democratTextSymbol->setHaloWidth(2);
+  democratTextSymbol->setHorizontalAlignment(HorizontalAlignment::Center);
+  democratTextSymbol->setVerticalAlignment(VerticalAlignment::Middle);
+
+  LabelDefinition* democratLabelDefinition = new LabelDefinition(democratArcadeLabelExpression, democratTextSymbol, this);
+  democratLabelDefinition->setWhereClause("PARTY = 'Democrat'");
+
+  return democratLabelDefinition;
 }
